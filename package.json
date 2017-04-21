@@ -1,10 +1,21 @@
 {
   "name": "karte",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "start": "node ./bin/www"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/negipon/karte.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/negipon/karte/issues"
+  },
+  "homepage": "https://github.com/negipon/karte#readme",
   "dependencies": {
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
@@ -12,6 +23,19 @@
     "ejs": "~2.5.6",
     "express": "~4.15.2",
     "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "express": "^4.15.2",
+    "gulp": "*",
+    "gulp-plumber": "*",
+    "gulp-rename": "*",
+    "gulp-sourcemaps": "*",
+    "gulp-sass": "*",
+    "gulp-autoprefixer": "*",
+    "es6-promise": "*",
+    "gulp-csscomb": "*",
+    "gulp-merge-media-queries": "*",
+    "gulp-frontnote": "*",
+    "gulp-clean-css": "*",
+    "gulp-uglify": "*"
   }
 }
