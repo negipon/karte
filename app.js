@@ -4,8 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var passport = require('passport');
+var passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session'); //セッション追加
+
 // ルート設定
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -13,6 +15,30 @@ var login = require('./routes/login');
 
 var app = express();
 
+var db = require('./db/');
+
+passport.use(new LocalStrategy(
+  function(username, password, cb) {
+    db.users.findByUsername(username, function(err, user) {
+      if (err) { return cb(err); }
+      if (!user) { return cb(null, false); }
+      if (user.password != password) { return cb(null, false); }
+      return cb(null, user);
+    });
+  }
+));
+
+// Configure Passport authenticated session persistence.
+passport.serializeUser(function(user, cb) {
+  cb(null, user.id);
+});
+
+passport.deserializeUser(function(id, cb) {
+  db.users.findById(id, function (err, user) {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

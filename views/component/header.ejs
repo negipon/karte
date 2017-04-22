@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= title %></title>
+<link rel='stylesheet' href='/css/common.min.css' />
+</head>
+<body>
+	<header>
+		<h1><%= title %></h1>
+		<% if (user) { %>
+		<p>USER: <%= user.displayName %></p>
+		<% } %>
+	</header>

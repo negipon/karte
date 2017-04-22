@@ -1,26 +1,15 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/css/common.min.css' />
-  </head>
-  <body>
-      <% if (user_name) { %>
-      <p id="id_test">USER: <%= user_name %></p>
-      <% } %>
-      <form action="/login" method="post">
-      <div>
-          <label>ユーザーID：</label>
-          <input type="text" name="username">
-      </div>
-      <div>
-          <label>パスワード：</label>
-          <input type="password" name="password">
-      </div>
-      <div>
-          <input type="submit" value="ログイン">
-      </div>
-  </form>
-  <a href="/logout">Logout</a>
-  </body>
-</html>
+<%- include('component/header') -%>
+	<form action="/login" method="post">
+		<div>
+			<label>ユーザーID：</label>
+			<input type="text" name="username">
+		</div>
+		<div>
+			<label>パスワード：</label>
+			<input type="password" name="password">
+		</div>
+		<div>
+			<input type="submit" value="ログイン">
+		</div>
+	</form>
+<%- include('component/footer') -%>
