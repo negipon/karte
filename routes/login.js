@@ -64,14 +64,14 @@ passport.deserializeUser(function(id, cb) {
 
 router.get('/',
   function(req, res, next) {
-  res.render('login', { title: 'Login' });
+  res.render('login', { title: 'Login', user_name:req.user && req.user.name || ""  });
 });
 
 router.post('/',
   passport.authenticate('local', {
-   failureRedirect: '/login',
-   failureFlash: false}),
-  function(req, res, next){
+   failureRedirect: '/login'
+  }),
+  function(req, res, next) {
     res.render('login', { title: 'Login', user_name:req.user && req.user.name || ""  });
   }
 );

@@ -37,6 +37,10 @@ app.use(passport.session()); // セッション追加
 app.use('/', routes);
 app.use('/users', users);
 app.use('/login', login);
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

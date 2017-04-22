@@ -5,7 +5,9 @@
     <link rel='stylesheet' href='/css/common.min.css' />
   </head>
   <body>
-      <p id="id_test"><%= user_name %></p>
+      <% if (user_name) { %>
+      <p id="id_test">USER: <%= user_name %></p>
+      <% } %>
       <form action="/login" method="post">
       <div>
           <label>ユーザーID：</label>
@@ -19,5 +21,6 @@
           <input type="submit" value="ログイン">
       </div>
   </form>
+  <a href="/logout">Logout</a>
   </body>
 </html>
