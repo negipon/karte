@@ -5,8 +5,27 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy;
+
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+      User.findOne({ username: username }, function(err, user) {
+        if (err) { return done(err); }
+        if (!user) {
+          return done(null, false, { message: 'ユーザーIDが間違っています。' });
+        }
+        if (!user.validPassword(password)) {
+          return done(null, false, { message: 'パスワードが間違っています。' });
+        }
+        return done(null, user);
+      });
+    }
+));
+
 var index = require('./routes/index');
 var users = require('./routes/users');
+var login = require('./routes/login');
 
 var app = express();
 
@@ -24,6 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -42,5 +62,14 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.post('/login',
+  passport.authenticate('local', {
+    failureRedirect: '/login'
+   }),
+    function(req, res){
+        res.redirect('/users');
+    }
+);
 
 module.exports = app;
