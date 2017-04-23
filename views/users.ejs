@@ -3,18 +3,20 @@
 		<table class="c-table--user">
 			<thead>
 				<tr>
-					<td>id</td>
-					<td>name</td>
-					<td>password</td>
-					<td>display name</td>
-					<td>e-mail</td>
+					<% for (var key in users[0]) { %>
+					<% if (key !== 'password') { %>
+					<td><%= key %></td>
+					<% } %>
+					<% } %>
 				</tr>
 			</thead>
 			<tbody>
 				<% for (var i in users) { %>
 				<tr>
-					<% for (var j in users[i]) { %>
-					<td><%= users[i][j] %></td>
+					<% for (var key in users[i]) { %>
+					<% if (key !== 'password') { %>
+					<td><%= users[i][key] %></td>
+					<% } %>
 					<% } %>
 				</tr>
 				<% } %>

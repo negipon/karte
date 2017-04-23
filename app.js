@@ -35,25 +35,30 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new LocalStrategy(
-	function(username, password, cb) {
+	{
+		usernameField: 'username',
+		passwordField: 'password',
+		passReqToCallback: true
+	},
+	function(req, username, password, done) {
 	dbuser.findByUsername(username, function(err, user) {
-		if (err) { return cb(err); }
+		if (err) { return done(err); }
 		if (!user) {
 			req.flash('error', 'ユーザーが見つかりませんでした。');
-			req.flash('input_id', name);
+			req.flash('input_id', username);
 			req.flash('input_password', password);
-			return cb(null, false);
+			return done(null, false);
 		}
 
 		var hashedPassword = getHash(password);
 		if (user.password != hashedPassword
 			&& user.password != password) {
 				req.flash('error', 'パスワードが間違っています。');
-				req.flash('input_id', name);
+				req.flash('input_id', username);
 				req.flash('input_password', password);
-				return cb(null, false);
+				return done(null, false);
 			}
-			return cb(null, user);
+			return done(null, user);
 		});
 	}
 ));
@@ -87,8 +92,8 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/login', login);
 app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
+	req.logout();
+	res.redirect('/');
 });
 
 // catch 404 and forward to error handler

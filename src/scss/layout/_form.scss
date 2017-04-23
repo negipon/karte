@@ -20,4 +20,9 @@
 		&-wrap {
 		}
 	}
+	&--error {
+		+ .l-form--row {
+			margin-top: 20px;
+		}
+	}
 }

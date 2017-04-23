@@ -372,6 +372,10 @@ body {
 	text-align: center;
 }
 
+.l-form--error + .l-form--row {
+	margin-top: 20px;
+}
+
 .l-header {
 	display: table;
 	width: 100%;
@@ -404,6 +408,11 @@ body {
 	padding: 10px;
 	color: #fff;
 	background-color: #ff5722;
+}
+
+.c-form--error {
+	text-align: center;
+	color: red;
 }
 
 .c-header--contents {
