@@ -393,6 +393,10 @@ a {
 	text-align: center;
 }
 
+.l-form--row + .l-form--error {
+	margin-top: 20px;
+}
+
 .l-form--error + .l-form--row {
 	margin-top: 20px;
 }

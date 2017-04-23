@@ -42,7 +42,10 @@ passport.use(new LocalStrategy(
 	},
 	function(req, username, password, done) {
 	dbuser.findByUsername(username, function(err, user) {
-		if (err) { return done(err); }
+		if (err) {
+			return done(err);
+		}
+
 		if (!user) {
 			req.flash('error', 'ユーザーが見つかりませんでした。');
 			req.flash('input_id', username);
@@ -71,7 +74,9 @@ passport.serializeUser(function(user, cb) {
 
 passport.deserializeUser(function(id, cb) {
 	dbuser.findById(id, function (err, user) {
-		if (err) { return cb(err); }
+		if (err) {
+			return cb(err);
+		}
 		cb(null, user);
 	});
 });
