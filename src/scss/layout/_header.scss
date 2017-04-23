@@ -5,8 +5,6 @@
 	&--title,
 	&--contents {
 		display: table-cell;
-	}
-	&--contents {
-		text-align: right;
+		vertical-align: top;
 	}
 }

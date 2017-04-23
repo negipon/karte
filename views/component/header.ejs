@@ -8,13 +8,13 @@
 <body>
 	<header class="l-header c-header">
 		<div class="l-header--title">
-			<h1 class="c-header--heading-primary">Karte</h1>
+			<h1 class="c-header--heading-primary"><a href="/">Karte</a></h1>
+			<h2 class="c-header--heading-secondary"><%= title %> Page</h2>
 		</div>
 		<div class="l-header--contents c-header--contents cf">
-			<h2 class="c-header--heading-secondary"><%= title %> Page</h2>
 			<% if (user) { %>
-			<p class="c-header--display-name">USER: <%= user.displayName %></p>
-			<a href="/logout">Logout</a>
+			<a href="/logout" class="c-header--logout">Logout</a>
+			<p class="c-header--display-name"><%= user.displayName %></p>
 			<% } %>
 		</div>
 	</header>
