@@ -338,6 +338,92 @@ video {
 	text-shadow: none;
 }
 
+.cf:after {
+	display: table;
+	clear: both;
+	content: '';
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, 'Varela Round', 'Helvetica Neue', 'Yu Gothic', YuGothic, 'ヒラギノ角ゴ ProN W3', Hiragino Kaku Gothic ProN, Arial, 'メイリオ', Meiryo, sans-serif;
+}
+
+.l-form {
+	max-width: 400px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.l-form--row {
+	display: table;
+	width: 100%;
+}
+
+.l-form--row + .l-form--row {
+	margin-top: 20px;
+}
+
+.l-form--row-title,
+.l-form--row-input {
+	display: table-cell;
+}
+
+.l-form--row-title {
+	text-align: center;
+}
+
+.l-header {
+	display: table;
+	width: 100%;
+	padding: 20px;
+}
+
+.l-header--title,
+.l-header--contents {
+	display: table-cell;
+}
+
+.l-header--contents {
+	text-align: right;
+}
+
+.l-main {
+	padding: 20px;
+}
+
+.c-form--input {
+	width: 100%;
+	padding: 5px 10px;
+	border: solid 1px #ccc;
+	background-color: #fff;
+}
+
+.c-form--submit {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	color: #fff;
+	background-color: #ff5722;
+}
+
+.c-header--contents {
+	text-align: right;
+}
+
+.c-header--heading-primary {
+	font-size: 20px;
+}
+
+.c-header--heading-secondary {
+	font-size: 16px;
+	font-weight: normal;
+	display: inline-block;
+}
+
+.c-header--display-name {
+	display: inline-block;
+}
+
 @media screen {
 
 [hidden~='screen'] {

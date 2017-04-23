@@ -1,5 +1,7 @@
 <%- include('component/header') -%>
 	<div class="l-main">
-		<p>Welcome to <%= title %></p>
+		<% for (var i in user) { %>
+		<p><%= user[i] %></p>
+		<% } %>
 	</div>
 <%- include('component/footer') -%>

@@ -1,0 +1,12 @@
+.l-header {
+	padding: 20px;
+	display: table;
+	width: 100%;
+	&--title,
+	&--contents {
+		display: table-cell;
+	}
+	&--contents {
+		text-align: right;
+	}
+}

@@ -8,7 +8,6 @@ var connection = mysql.createConnection({
 });
 
 connection.query('select * from users', function (err, rows) {
-	console.log(rows);
 	exports.findById = function(id, cb) {
 		process.nextTick(function() {
 			var idx = id - 1;

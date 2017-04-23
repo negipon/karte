@@ -11,7 +11,7 @@ var isLogined = function(req, res, next){
 
 /* GET users listing. */
 router.get('/', isLogined, function(req, res, next) {
-	res.send('respond with a resource');
+	res.render('users', { title: 'Users', user:req.user });
 });
 
 module.exports = router;

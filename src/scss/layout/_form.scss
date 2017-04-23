@@ -1,0 +1,23 @@
+.l-form {
+	max-width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	&--row {
+		display: table;
+		width: 100%;
+		+ .l-form--row {
+			margin-top: 20px;
+		}
+		&-title,
+		&-input {
+			display: table-cell;
+		}
+		&-title {
+			text-align: center;
+		}
+	}
+	&--submit {
+		&-wrap {
+		}
+	}
+}

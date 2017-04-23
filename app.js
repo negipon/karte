@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
-var session = require('express-session'); //セッション追加
+var session = require('express-session');
 
 // ルート設定
 var routes = require('./routes/index');
