@@ -1,7 +1,24 @@
 <%- include('component/header') -%>
 	<div class="l-main">
-		<% for (var i in user) { %>
-		<p><%= user[i] %></p>
-		<% } %>
+		<table class="c-table--user">
+			<thead>
+				<tr>
+					<td>id</td>
+					<td>name</td>
+					<td>password</td>
+					<td>display name</td>
+					<td>e-mail</td>
+				</tr>
+			</thead>
+			<tbody>
+				<% for (var i in users) { %>
+				<tr>
+					<% for (var j in users[i]) { %>
+					<td><%= users[i][j] %></td>
+					<% } %>
+				</tr>
+				<% } %>
+			</tbody>
+		</table>
 	</div>
 <%- include('component/footer') -%>

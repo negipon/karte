@@ -1,11 +1,4 @@
-var mysql = require('mysql');
-
-var connection = mysql.createConnection({
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'karte',
-  password: process.env.DB_PASS || 'hoge',
-  database: process.env.DB_NAME || 'karte'
-});
+var connection = require('./index.js');
 
 connection.query('select * from users', function (err, rows) {
 	exports.findById = function(id, cb) {

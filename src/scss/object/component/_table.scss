@@ -1,0 +1,23 @@
+.c-table {
+	&--user {
+		width: 100%;
+		border-collapse: collapse;
+		border-right: solid 1px #eee;
+		border-bottom: solid 1px #eee;
+		thead {
+			tr {
+				background-color: #666;
+				color: #fff;
+			}
+		}
+		tbody {
+			tr:nth-child(2n) {
+				background-color: #f5f5f5;
+			}
+		}
+		td {
+			padding: 5px 10px;
+			border-left: solid 1px #eee;
+		}
+	}
+}

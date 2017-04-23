@@ -5,8 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var session = require('express-session');
+var crypto = require('crypto');
+var flash = require('connect-flash');
 
 // ルート設定
 var routes = require('./routes/index');
@@ -15,14 +17,42 @@ var login = require('./routes/login');
 
 var app = express();
 
-var db = require('./db/');
+var connection = require('./db/');
+var dbuser = require('./db/user');
+
+// 暗号化
+var getHash = function(value) {
+	var sha = crypto.createHmac('sha256', 'secretKey');
+	sha.update(value);
+	return sha.digest('hex');
+};
+
+// セッションミドルウェア設定
+app.use(session({ resave:false, saveUninitialized:false, secret: 'keyboar cat' }));
+app.use(flash());
+// 認証ミドルウェアpassportの初期化。
+app.use(passport.initialize());
+app.use(passport.session());
 
 passport.use(new LocalStrategy(
 	function(username, password, cb) {
-	db.users.findByUsername(username, function(err, user) {
+	dbuser.findByUsername(username, function(err, user) {
 		if (err) { return cb(err); }
-		if (!user) { return cb(null, false); }
-		if (user.password != password) { return cb(null, false); }
+		if (!user) {
+			req.flash('error', 'ユーザーが見つかりませんでした。');
+			req.flash('input_id', name);
+			req.flash('input_password', password);
+			return cb(null, false);
+		}
+
+		var hashedPassword = getHash(password);
+		if (user.password != hashedPassword
+			&& user.password != password) {
+				req.flash('error', 'パスワードが間違っています。');
+				req.flash('input_id', name);
+				req.flash('input_password', password);
+				return cb(null, false);
+			}
 			return cb(null, user);
 		});
 	}
@@ -34,7 +64,7 @@ passport.serializeUser(function(user, cb) {
 });
 
 passport.deserializeUser(function(id, cb) {
-	db.users.findById(id, function (err, user) {
+	dbuser.findById(id, function (err, user) {
 		if (err) { return cb(err); }
 		cb(null, user);
 	});
@@ -51,13 +81,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// セッションミドルウェア設定
- app.use(session({ resave:false,saveUninitialized:false, secret: 'keyboar cat' }));
-
-// 認証ミドルウェアpassportの初期化。
-app.use(passport.initialize());
-app.use(passport.session()); // セッション追加
 
 // ルーティング設定
 app.use('/', routes);
@@ -88,7 +111,6 @@ if (app.get('env') === 'development') {
 		});
 	});
 }
-
 
 // production error handler
 // no stacktraces leaked to user
