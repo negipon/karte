@@ -1,7 +1,13 @@
 <!DOCTYPE html>
-<html>
+<!--[if IE 8]><html lang="ja" class="ie8 no-js"><![endif]-->
+<!--[if IE 9]><html lang="ja" class="ie9 no-js"><![endif]-->
+<!--[if !IE]><!-->
+<html lang="ja" class="no-js">
+<!--<![endif]-->
 <head>
+<meta charset="UTF-8">
 <title><%= title %></title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
 <link rel='stylesheet' href='/css/common.min.css'>
 </head>
@@ -11,10 +17,10 @@
 			<h1 class="c-header--heading-primary"><a href="/">Karte</a></h1>
 			<h2 class="c-header--heading-secondary"><%= title %> Page</h2>
 		</div>
-		<div class="l-header--contents c-header--contents cf">
-			<% if (user) { %>
+		<% if (user) { %>
+		<div class="l-header--contents c-header--contents">
 			<a href="/logout" class="c-header--logout">Logout</a>
 			<p class="c-header--display-name"><%= user.displayName %></p>
-			<% } %>
 		</div>
+		<% } %>
 	</header>

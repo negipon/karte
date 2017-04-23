@@ -1,4 +1,5 @@
 .c-header {
+	background-color: rgba(255,255,255,0.7);
 	&--contents {
 		text-align: right;
 	}
@@ -9,14 +10,13 @@
 		}
 		&-secondary {
 			font-size: 16px;
-			margin-top: 10px;
+			margin-top: 5px;
 			font-weight: normal;
-			display: inline-block;
 		}
 	}
 	&--display {
 		&-name {
-			margin-top: 10px;
+			margin-top: 5px;
 		}
 	}
 	&--logout {
