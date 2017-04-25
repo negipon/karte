@@ -11,7 +11,10 @@ var isLogined = function(req, res, next){
 
 /* GET home page. */
 router.get('/', isLogined, function(req, res, next) {
-	res.render('index', { title: 'Express', user:req.user });
+	res.render('index', {
+		title: 'Express',
+		user:req.user
+	});
 });
 
 module.exports = router;

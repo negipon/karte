@@ -13,7 +13,22 @@ var isLogined = function(req, res, next){
 /* GET users listing. */
 router.get('/', isLogined, function(req, res, next) {
 	connection.query('select * from users', function (err, rows) {
-		res.render('users', { title: 'Users', user:req.user, users:rows });
+		res.render('users', {
+			title: 'Users',
+			user:req.user,
+			users:rows
+		});
+	});
+});
+
+/* Add users. */
+router.get('/add', isLogined, function(req, res, next) {
+	connection.query('select * from users', function (err, rows) {
+		res.render('users-add', {
+			title: 'Users',
+			user:req.user,
+			users:rows
+		});
 	});
 });
 
