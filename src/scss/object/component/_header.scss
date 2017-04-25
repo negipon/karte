@@ -1,26 +1,35 @@
 .c-header {
-	background-color: rgba(255,255,255,0.7);
+	display: table;
+	width: 100%;
 	&--contents {
 		text-align: right;
 	}
-
+	&--menu {
+		&-link {
+			display: inline-block;
+			font-size: 24px;
+			color: #ff5252;
+			cursor: pointer;
+		}
+	}
 	&--heading {
 		&-primary {
-			font-size: 20px;
+			display: inline-block;
+			vertical-align: middle;
 		}
-		&-secondary {
-			font-size: 16px;
-			margin-top: 5px;
-			font-weight: normal;
+		&-primary {
+			font-size: 24px;
+			+ .c-header--heading-secondary {
+				margin-left: 20px;
+			}
 		}
 	}
 	&--display {
 		&-name {
-			margin-top: 5px;
+			display: inline-block;
 		}
 	}
 	&--logout {
 		display: inline-block;
-		font-size: 12px
 	}
 }

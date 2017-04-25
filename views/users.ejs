@@ -1,26 +1,29 @@
 <%- include('component/header') -%>
 	<div class="l-main c-main">
-		<table class="c-table--user">
-			<thead>
-				<tr>
-					<% for (var key in users[0]) { %>
-					<% if (key !== 'password') { %>
-					<td><%= key %></td>
+		<div class="container">
+			<h2 class="c-heading--primary"><%= title %> Page</h2>
+			<table class="c-table--user">
+				<thead>
+					<tr>
+						<% for (var key in users[0]) { %>
+						<% if (key !== 'password') { %>
+						<th><%= key %></th>
+						<% } %>
+						<% } %>
+					</tr>
+				</thead>
+				<tbody>
+					<% for (var i in users) { %>
+					<tr>
+						<% for (var key in users[i]) { %>
+						<% if (key !== 'password') { %>
+						<td><%= users[i][key] %></td>
+						<% } %>
+						<% } %>
+					</tr>
 					<% } %>
-					<% } %>
-				</tr>
-			</thead>
-			<tbody>
-				<% for (var i in users) { %>
-				<tr>
-					<% for (var key in users[i]) { %>
-					<% if (key !== 'password') { %>
-					<td><%= users[i][key] %></td>
-					<% } %>
-					<% } %>
-				</tr>
-				<% } %>
-			</tbody>
-		</table>
+				</tbody>
+			</table>
+		</div>
 	</div>
 <%- include('component/footer') -%>
