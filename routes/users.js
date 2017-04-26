@@ -25,7 +25,7 @@ router.get('/', isLogined, function(req, res, next) {
 router.get('/add', isLogined, function(req, res, next) {
 	connection.query('select * from users', function (err, rows) {
 		res.render('users-add', {
-			title: 'Users',
+			title: 'Add Users',
 			user:req.user,
 			users:rows
 		});

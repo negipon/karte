@@ -376,7 +376,11 @@ a:visited {
 	margin-left: auto;
 }
 
-.l-form {
+.l-form--add {
+	width: 100%;
+}
+
+.l-form--login {
 	max-width: 400px;
 	margin-right: auto;
 	margin-left: auto;
@@ -400,6 +404,7 @@ a:visited {
 
 .l-form--row-title {
 	line-height: 1.2;
+	width: 30%;
 	text-align: center;
 }
 

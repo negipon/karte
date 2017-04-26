@@ -1,9 +1,9 @@
 <%- include('component/header') -%>
 	<div class="l-main c-main">
-		<form action="/login" method="post" class="l-form c-form">
+		<form action="/login" method="post" class="l-form--login c-form--login">
 			<div class="l-form--row">
 				<div class="l-form--row-title">
-					<label class="c-form--label">ユーザーID：</label>
+					<label class="c-form--label">User Name: </label>
 				</div>
 				<div class="l-form--row-input">
 					<input type="text" name="username" value="<%= input_id %>" class="c-form--input" required>
@@ -11,7 +11,7 @@
 			</div>
 			<div class="l-form--row">
 				<div class="l-form--row-title">
-					<label class="c-form--label">パスワード：</label>
+					<label class="c-form--label">Password: </label>
 				</div>
 				<div class="l-form--row-input">
 					<input type="password" name="password" value="<%= input_password %>" class="c-form--input" required>
