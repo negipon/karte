@@ -1,7 +1,12 @@
 <%- include('component/header') -%>
 	<div class="l-main c-main">
 		<div class="container">
-			<h2 class="c-heading--primary"><%= title %> Page</h2>
+			<div class="c-heading--wrap cf">
+				<a href="/users/add" title="Add User" class="c-button--add">
+					<i class="fa fa-plus" aria-hidden="true"></i>
+				</a>
+				<h2 class="c-heading--primary"><%= title %> Page</h2>
+			</div>
 			<% if (user.authorityId > 3) { %>
 			<table class="c-table--user">
 				<thead>

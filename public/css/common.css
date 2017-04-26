@@ -454,8 +454,26 @@ a:visited {
 	padding: 100px 20px 20px;
 }
 
+.c-button--add {
+	font-size: 20px;
+	float: right;
+	width: 24px;
+	text-align: center;
+}
+
+.c-button--add > .fa {
+	display: inline-block;
+	vertical-align: middle;
+}
+
 .c-form--input {
 	width: 100%;
+	padding: 5px 10px;
+	border: solid 1px #ccc;
+	background-color: #fff;
+}
+
+.c-form--select {
 	padding: 5px 10px;
 	border: solid 1px #ccc;
 	background-color: #fff;
@@ -511,10 +529,15 @@ a:visited {
 	display: inline-block;
 }
 
+.c-heading--wrap + * {
+	margin-top: 20px;
+}
+
 .c-heading--primary {
 	font-size: 20px;
 	font-weight: normal;
 	position: relative;
+	overflow: hidden;
 	padding-left: 10px;
 }
 

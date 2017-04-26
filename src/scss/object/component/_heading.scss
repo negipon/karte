@@ -1,9 +1,15 @@
 .c-heading {
+	&--wrap {
+		+ * {
+			margin-top: 20px;
+		}
+	}
 	&--primary {
 		font-size: 20px;
 		font-weight: normal;
 		position: relative;
 		padding-left: 10px;
+		overflow: hidden;
 		&:before {
 			content: '';
 			position: absolute;

@@ -5,6 +5,28 @@
 			<form action="/login" method="post" class="l-form--add c-form--add">
 				<div class="l-form--row">
 					<div class="l-form--row-title">
+						<label class="c-form--label">User Number: </label>
+					</div>
+					<div class="l-form--row-input">
+						<input type="text" name="number" value="" class="c-form--input" required>
+					</div>
+				</div>
+				<div class="l-form--row">
+					<div class="l-form--row-title">
+						<label class="c-form--label">Authority: </label>
+					</div>
+					<div class="l-form--row-input">
+						<select name="authority" class="c-form--select" required>
+							<option value="1">Member</option>
+							<option value="2">Sub Leader</option>
+							<option value="3">Leader</option>
+							<option value="4">Assistant Manager</option>
+							<option value="5">Manager</option>
+						</select>
+					</div>
+				</div>
+				<div class="l-form--row">
+					<div class="l-form--row-title">
 						<label class="c-form--label">User Name: </label>
 					</div>
 					<div class="l-form--row-input">
