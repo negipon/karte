@@ -2,19 +2,15 @@
 	<div class="l-main c-main">
 		<form action="/login" method="post" class="l-form--login c-form--login">
 			<div class="l-form--row">
-				<div class="l-form--row-title">
-					<label class="c-form--label">User Name: </label>
-				</div>
-				<div class="l-form--row-input">
-					<input type="text" name="username" value="<%= input_id %>" class="c-form--input" required>
+				<div class="l-form--row-input c-form--input-wrap">
+					<input type="text" name="username" value="<%= input_id %>" class="c-form--input" placeholder="User Name" required>
+					<label class="c-form--label">User Name </label>
 				</div>
 			</div>
 			<div class="l-form--row">
-				<div class="l-form--row-title">
-					<label class="c-form--label">Password: </label>
-				</div>
 				<div class="l-form--row-input">
 					<input type="password" name="password" value="<%= input_password %>" class="c-form--input" required>
+					<label class="c-form--label">Password: </label>
 				</div>
 			</div>
 			<% if (error != '') { %>

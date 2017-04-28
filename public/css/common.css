@@ -414,7 +414,6 @@ a:visited {
 
 .l-form--table {
 	display: table;
-	width: 100%;
 }
 
 .l-form--column {
@@ -477,11 +476,24 @@ a:visited {
 	vertical-align: middle;
 }
 
+.c-form--label {
+	position: absolute;
+	visibility: hidden;
+}
+
 .c-form--input {
 	width: 100%;
-	padding: 5px 10px;
-	border: solid 1px #ccc;
-	background-color: #fff;
+	padding: 10px;
+	border-bottom: solid 1px #ccc;
+}
+
+.c-form--input:focus + .c-form--label {
+	visibility: visible;
+}
+
+.c-form--input-wrap {
+	position: relative;
+	padding-top: 20px;
 }
 
 .c-form--select {
