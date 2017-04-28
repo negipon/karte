@@ -21,7 +21,15 @@
 			</div>
 			<% } %>
 			<div class="l-header--title">
-				<h1 class="c-header--heading-primary"><a href="/">Karte</a></h1>
+				<h1 class="c-header--heading-primary">
+					<% if (user) { %>
+					<a href="/">
+					<% } %>
+					Karte
+					<% if (user) { %>
+					</a>
+					<% } %>
+				</h1>
 			</div>
 			<% if (user) { %>
 			<div class="l-header--contents c-header--contents">
@@ -33,11 +41,15 @@
 			<% } %>
 		</div>
 	</header>
+	<% if (user) { %>
 	<input type="checkbox" id="slide-trigger" class="c-slide--trigger">
 	<div class="c-slide--menu">
 		<ul class="c-slide--menu-list">
 			<li><a href="/">TOP</a></li>
+			<% if (user.authorityId > 3) { %>
 			<li><a href="/users">USERS LIST</a></li>
+			<% } %>
 		</ul>
 	</div>
 	<label for="slide-trigger" class="c-slide--overlay"></label>
+	<% } %>

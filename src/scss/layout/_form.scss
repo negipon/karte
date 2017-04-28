@@ -28,6 +28,16 @@
 			margin-top: 20px;
 		}
 	}
+	&--table {
+		display: table;
+		width: 100%;
+	}
+	&--column {
+		display: table-cell;
+		vertical-align: top;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
 	&--submit {
 		&-wrap {
 		}

@@ -2,34 +2,32 @@
 	<div class="l-main c-main">
 		<div class="container">
 			<div class="c-heading--wrap cf">
+				<% if (user.authorityId > 3) { %>
 				<a href="/users/add" title="Add User" class="c-button--add">
 					<i class="fa fa-plus" aria-hidden="true"></i>
 				</a>
+				<% } %>
 				<h2 class="c-heading--primary"><%= title %> Page</h2>
 			</div>
 			<% if (user.authorityId > 3) { %>
-			<table class="c-table--user">
-				<thead>
-					<tr>
-						<% for (var key in users[0]) { %>
-						<% if (key !== 'password') { %>
-						<th><%= key %></th>
-						<% } %>
-						<% } %>
-					</tr>
-				</thead>
-				<tbody>
-					<% for (var i in users) { %>
-					<tr>
-						<% for (var key in users[i]) { %>
-						<% if (key !== 'password') { %>
-						<td><%= users[i][key] %></td>
-						<% } %>
-						<% } %>
-					</tr>
+			<div class="c-table--user">
+				<div class="c-table--user-row c-table--user-title">
+					<% for (var key in users[0]) { %>
+					<% if (key !== 'password') { %>
+					<span class="c-table--user-cell"><%= key %></span>
 					<% } %>
-				</tbody>
-			</table>
+					<% } %>
+				</div>
+				<% for (var i in users) { %>
+				<a href="" class="c-table--user-row">
+					<% for (var key in users[i]) { %>
+					<% if (key !== 'password') { %>
+					<span class="c-table--user-cell"><%= users[i][key] %></span>
+					<% } %>
+					<% } %>
+				</a>
+				<% } %>
+			</div>
 			<% } else { %>
 			<p>権限がありません。</p>
 			<% } %>

@@ -2,64 +2,74 @@
 	<div class="l-main c-main">
 		<div class="container">
 			<h2 class="c-heading--primary"><%= title %> Page</h2>
-			<form action="/login" method="post" class="l-form--add c-form--add">
-				<div class="l-form--row">
-					<div class="l-form--row-title">
-						<label class="c-form--label">User Number: </label>
+			<form action="/login" method="post" class="l-form--add l-form--table c-form--add">
+				<div class="l-form--column">
+					<div class="l-form--row">
+						<img src="http://placehold.jp/250x250.png" alt="">
 					</div>
-					<div class="l-form--row-input">
-						<input type="text" name="number" value="" class="c-form--input" required>
-					</div>
-				</div>
-				<div class="l-form--row">
-					<div class="l-form--row-title">
-						<label class="c-form--label">Authority: </label>
-					</div>
-					<div class="l-form--row-input">
-						<select name="authority" class="c-form--select" required>
-							<option value="1">Member</option>
-							<option value="2">Sub Leader</option>
-							<option value="3">Leader</option>
-							<option value="4">Assistant Manager</option>
-							<option value="5">Manager</option>
-						</select>
+					<div class="l-form--row">
+						<input type="file" name="" value="">
 					</div>
 				</div>
-				<div class="l-form--row">
-					<div class="l-form--row-title">
-						<label class="c-form--label">User Name: </label>
+				<div class="l-form--column">
+					<div class="l-form--row">
+						<div class="l-form--row-title">
+							<label class="c-form--label">User Number: </label>
+						</div>
+						<div class="l-form--row-input">
+							<input type="text" name="number" value="" class="c-form--input" required>
+						</div>
 					</div>
-					<div class="l-form--row-input">
-						<input type="text" name="username" value="" class="c-form--input" required>
+					<div class="l-form--row">
+						<div class="l-form--row-title">
+							<label class="c-form--label">Authority: </label>
+						</div>
+						<div class="l-form--row-input">
+							<select name="authority" class="c-form--select" required>
+								<option value="1">Member</option>
+								<option value="2">Sub Leader</option>
+								<option value="3">Leader</option>
+								<option value="4">Assistant Manager</option>
+								<option value="5">Manager</option>
+							</select>
+						</div>
 					</div>
-				</div>
-				<div class="l-form--row">
-					<div class="l-form--row-title">
-						<label class="c-form--label">Password: </label>
+					<div class="l-form--row">
+						<div class="l-form--row-title">
+							<label class="c-form--label">User Name: </label>
+						</div>
+						<div class="l-form--row-input">
+							<input type="text" name="username" value="" class="c-form--input" required>
+						</div>
 					</div>
-					<div class="l-form--row-input">
-						<input type="password" name="password" value="" class="c-form--input" required>
+					<div class="l-form--row">
+						<div class="l-form--row-title">
+							<label class="c-form--label">Password: </label>
+						</div>
+						<div class="l-form--row-input">
+							<input type="password" name="password" value="" class="c-form--input" required>
+						</div>
 					</div>
-				</div>
-				<div class="l-form--row">
-					<div class="l-form--row-title">
-						<label class="c-form--label">Display Name: </label>
+					<div class="l-form--row">
+						<div class="l-form--row-title">
+							<label class="c-form--label">Display Name: </label>
+						</div>
+						<div class="l-form--row-input">
+							<input type="text" name="dispayName" value="" class="c-form--input" required>
+						</div>
 					</div>
-					<div class="l-form--row-input">
-						<input type="text" name="dispayName" value="" class="c-form--input" required>
+					<div class="l-form--row">
+						<div class="l-form--row-title">
+							<label class="c-form--label">E-mail: </label>
+						</div>
+						<div class="l-form--row-input">
+							<input type="email" name="email" value="" class="c-form--input" required>
+						</div>
 					</div>
-				</div>
-				<div class="l-form--row">
-					<div class="l-form--row-title">
-						<label class="c-form--label">E-mail: </label>
-					</div>
-					<div class="l-form--row-input">
-						<input type="email" name="email" value="" class="c-form--input" required>
-					</div>
-				</div>
-				<div class="l-form--row">
-					<div class="l-form--submit-wrap">
-						<input type="submit" value="Add User" class="c-form--submit">
+					<div class="l-form--row">
+						<div class="l-form--submit-wrap">
+							<input type="submit" value="Add User" class="c-form--submit">
+						</div>
 					</div>
 				</div>
 			</form>

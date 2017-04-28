@@ -1,23 +1,32 @@
 .c-table {
 	&--user {
+		display: table;
 		background-color: #fff;
 		width: 100%;
 		border-collapse: collapse;
 		border-bottom: solid 1px #e0e0e0;
-		thead {
-			tr {
-				background-color: #666;
-				color: #fff;
+		&-title {
+			background-color: #666;
+			color: #fff;
+		}
+		&-row {
+			display: table-row;
+			&:link, &:visited {
+				color: #666;
+			}
+			&:not(.c-table--user-title) {
+				transition: background-color .3s ease-in-out;
+				&:nth-child(odd) {
+					background-color: #f0f0f0;
+				}
+				&:hover {
+					background-color: #e5f2f9;
+				}
 			}
 		}
-		tbody {
-			tr:nth-child(2n) {
-				background-color: #f0f0f0;
-			}
-		}
-		th,td {
+		&-cell {
+			display: table-cell;
 			padding: 10px;
-			text-align: left;
 		}
 	}
 }
