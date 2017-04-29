@@ -3,7 +3,7 @@
 		<div class="container">
 			<h2 class="c-heading--primary"><%= title %> Page</h2>
 			<form action="/login" method="post" class="l-form--add l-form--table c-form--add">
-				<div class="l-form--column">
+				<div class="l-form--column column1-3">
 					<div class="l-form--row">
 						<img src="http://placehold.jp/250x250.png" alt="">
 					</div>
@@ -13,18 +13,16 @@
 				</div>
 				<div class="l-form--column">
 					<div class="l-form--row">
-						<div class="l-form--row-title">
-							<label class="c-form--label">User Number: </label>
-						</div>
-						<div class="l-form--row-input">
+						<div class="l-form--row-input c-form--input-wrap">
 							<input type="text" name="number" value="" class="c-form--input" required>
+							<label class="c-form--label">User Number</label>
 						</div>
 					</div>
 					<div class="l-form--row">
 						<div class="l-form--row-title">
-							<label class="c-form--label">Authority: </label>
+							<label class="c-form--label">Authority</label>
 						</div>
-						<div class="l-form--row-input">
+						<div class="l-form--row-input c-form--input-wrap">
 							<select name="authority" class="c-form--select" required>
 								<option value="1">Member</option>
 								<option value="2">Sub Leader</option>
@@ -35,35 +33,27 @@
 						</div>
 					</div>
 					<div class="l-form--row">
-						<div class="l-form--row-title">
-							<label class="c-form--label">User Name: </label>
-						</div>
-						<div class="l-form--row-input">
+						<div class="l-form--row-input c-form--input-wrap">
 							<input type="text" name="username" value="" class="c-form--input" required>
+							<label class="c-form--label">User Name</label>
 						</div>
 					</div>
 					<div class="l-form--row">
-						<div class="l-form--row-title">
-							<label class="c-form--label">Password: </label>
-						</div>
-						<div class="l-form--row-input">
+						<div class="l-form--row-input c-form--input-wrap">
 							<input type="password" name="password" value="" class="c-form--input" required>
+							<label class="c-form--label">Password</label>
 						</div>
 					</div>
 					<div class="l-form--row">
-						<div class="l-form--row-title">
-							<label class="c-form--label">Display Name: </label>
-						</div>
-						<div class="l-form--row-input">
+						<div class="l-form--row-input c-form--input-wrap">
 							<input type="text" name="dispayName" value="" class="c-form--input" required>
+							<label class="c-form--label">Display Name</label>
 						</div>
 					</div>
 					<div class="l-form--row">
-						<div class="l-form--row-title">
-							<label class="c-form--label">E-mail: </label>
-						</div>
-						<div class="l-form--row-input">
-							<input type="email" name="email" value="" class="c-form--input" required>
+						<div class="l-form--row-input c-form--input-wrap">
+							<input type="text" name="email" value="" class="c-form--input" required>
+							<label class="c-form--label">E-mail</label>
 						</div>
 					</div>
 					<div class="l-form--row">

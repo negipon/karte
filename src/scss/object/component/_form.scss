@@ -1,17 +1,31 @@
 .c-form {
 	&--label {
-		visibility: hidden;
-		position: absolute;
+		color: #aaa;
 	}
 	&--input {
 		border-bottom: solid 1px #CCC;
-		padding: 10px;
+		padding: 10px 10px 10px 5px;
 		width: 100%;
-		&:focus + .c-form--label {
-			visibility: visible;
+		transition: margin-top .3s ease-in-out;
+		+ .c-form--label {
+			position: absolute;
+			transition: all .3s ease-in-out;
+			left: 5px;
+			top: 10px;
+			pointer-events: none;
+		}
+		&:focus,
+		&:valid {
+			border-bottom: solid 1px #ff5252;
+			margin-top: 20px;
+			outline: none;
+			+ .c-form--label {
+				top: 0;
+				color: #ff5252;
+				font-size: 14px;
+			}
 		}
 		&-wrap {
-			padding-top: 20px;
 			position: relative;
 		}
 	}

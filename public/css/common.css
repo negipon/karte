@@ -403,9 +403,7 @@ a:visited {
 }
 
 .l-form--row-title {
-	line-height: 1.2;
-	width: 30%;
-	text-align: center;
+	padding-left: 5px;
 }
 
 .l-form--row + .l-form--error {
@@ -418,9 +416,15 @@ a:visited {
 
 .l-form--column {
 	display: table-cell;
-	padding-right: 10px;
-	padding-left: 10px;
 	vertical-align: top;
+}
+
+.l-form--column.column1-4 {
+	width: 25%;
+}
+
+.l-form--column.column1-3 {
+	width: 33.333%;
 }
 
 .l-form--error + .l-form--row {
@@ -477,23 +481,40 @@ a:visited {
 }
 
 .c-form--label {
-	position: absolute;
-	visibility: hidden;
+	color: #aaa;
 }
 
 .c-form--input {
 	width: 100%;
-	padding: 10px;
+	padding: 10px 10px 10px 5px;
+	transition: margin-top .3s ease-in-out;
 	border-bottom: solid 1px #ccc;
 }
 
-.c-form--input:focus + .c-form--label {
-	visibility: visible;
+.c-form--input + .c-form--label {
+	position: absolute;
+	top: 10px;
+	left: 5px;
+	transition: all .3s ease-in-out;
+	pointer-events: none;
+}
+
+.c-form--input:focus,
+.c-form--input:valid {
+	margin-top: 20px;
+	border-bottom: solid 1px #ff5252;
+	outline: none;
+}
+
+.c-form--input:focus + .c-form--label,
+.c-form--input:valid + .c-form--label {
+	font-size: 14px;
+	top: 0;
+	color: #ff5252;
 }
 
 .c-form--input-wrap {
 	position: relative;
-	padding-top: 20px;
 }
 
 .c-form--select {
