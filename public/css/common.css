@@ -275,8 +275,9 @@ legend { /* Correct the color inheritance from `fieldset` elements in IE */
    # Specify media element style
    # ================================================================= */
 
-img {
-	border-style: none; /* Remove border when inside `a` element in IE 8/9/10 */
+img { /* Remove border when inside `a` element in IE 8/9/10 */
+	max-width: 100%;
+	border-style: none;
 }
 
 /* Add the correct vertical alignment in Chrome, Firefox, and Opera */
@@ -416,6 +417,8 @@ a:visited {
 
 .l-form--column {
 	display: table-cell;
+	padding-right: 10px;
+	padding-left: 10px;
 	vertical-align: top;
 }
 
@@ -515,6 +518,33 @@ a:visited {
 
 .c-form--input-wrap {
 	position: relative;
+}
+
+.c-form--upload {
+	text-align: center;
+}
+
+.c-form--upload-label {
+	display: inline-block;
+	padding: 5px 10px;
+	cursor: pointer;
+	color: #ff5252;
+	border-bottom: solid 1px #ff5252;
+}
+
+.c-form--upload-input {
+	display: none;
+}
+
+.c-form--upload-value {
+	font-size: 12px;
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	padding: 5px 10px;
+	text-align: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .c-form--select {

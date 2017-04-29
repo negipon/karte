@@ -32,6 +32,8 @@
 	&--column {
 		display: table-cell;
 		vertical-align: top;
+		padding-left: 10px;
+		padding-right: 10px;
 		&.column1-4 {
 			width: 25%;
 		}

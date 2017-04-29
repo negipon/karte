@@ -3,13 +3,11 @@
 		<div class="container">
 			<h2 class="c-heading--primary"><%= title %> Page</h2>
 			<form action="/login" method="post" class="l-form--add l-form--table c-form--add">
-				<div class="l-form--column column1-3">
-					<div class="l-form--row">
-						<img src="http://placehold.jp/250x250.png" alt="">
-					</div>
-					<div class="l-form--row">
-						<input type="file" name="" value="">
-					</div>
+				<div class="l-form--column column1-3 c-form--upload">
+					<img src="http://placehold.jp/250x250.png">
+					<input type="file" onchange="uv.value = this.value;" name="user-photo" id="user-upload-photo" class="c-form--upload-input">
+					<label for="user-upload-photo" class="c-form--upload-label"><i class="fa fa-upload" aria-hidden="true"></i> Photo File Select</label>
+					<input type="text" id="uv" class="c-form--upload-value" disabled>
 				</div>
 				<div class="l-form--column">
 					<div class="l-form--row">

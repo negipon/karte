@@ -29,6 +29,29 @@
 			position: relative;
 		}
 	}
+	&--upload {
+		text-align: center;
+		&-label {
+			display: inline-block;
+			padding: 5px 10px;
+			border-bottom: solid 1px #ff5252;
+			color: #ff5252;
+			cursor: pointer;
+		}
+		&-input {
+			display: none;
+		}
+		&-value {
+			font-size: 12px;
+			display: block;
+			width: 100%;
+			padding: 5px 10px;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			text-align: center;
+		}
+	}
 	&--select {
 		background-color: #fff;
 		border: solid 1px #CCC;
