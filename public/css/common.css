@@ -397,14 +397,12 @@ a:visited {
 	margin-top: 20px;
 }
 
-.l-form--row-title,
-.l-form--row-input {
+.l-form--row-cell {
 	display: table-cell;
-	vertical-align: middle;
 }
 
 .l-form--row-title {
-	padding-left: 5px;
+	padding: 25px 10px 5px 5px;
 }
 
 .l-form--row + .l-form--error {
@@ -488,15 +486,15 @@ a:visited {
 }
 
 .c-form--input {
-	width: 100%;
-	padding: 10px 10px 10px 5px;
+	width: calc(100% - 10px);
+	padding: 25px 10px 5px 5px;
 	transition: margin-top .3s ease-in-out;
 	border-bottom: solid 1px #ccc;
 }
 
 .c-form--input + .c-form--label {
 	position: absolute;
-	top: 10px;
+	top: 20px;
 	left: 5px;
 	transition: all .3s ease-in-out;
 	pointer-events: none;
@@ -504,7 +502,6 @@ a:visited {
 
 .c-form--input:focus,
 .c-form--input:valid {
-	margin-top: 20px;
 	border-bottom: solid 1px #ff5252;
 	outline: none;
 }

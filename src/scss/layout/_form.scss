@@ -14,13 +14,11 @@
 		+ .l-form--row {
 			margin-top: 20px;
 		}
-		&-title,
-		&-input {
+		&-cell {
 			display: table-cell;
-			vertical-align: middle;
 		}
 		&-title {
-			padding-left: 5px;
+			padding: 25px 10px 5px 5px;
 		}
 		+ .l-form--error {
 			margin-top: 20px;
