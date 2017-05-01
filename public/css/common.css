@@ -401,6 +401,10 @@ a:visited {
 	display: table-cell;
 }
 
+.l-form--row-cell + .l-form--row-cell {
+	padding-left: 10px;
+}
+
 .l-form--row-title {
 	padding: 25px 10px 5px 5px;
 }
@@ -486,7 +490,7 @@ a:visited {
 }
 
 .c-form--input {
-	width: calc(100% - 10px);
+	width: 100%;
 	padding: 25px 10px 5px 5px;
 	transition: margin-top .3s ease-in-out;
 	border-bottom: solid 1px #ccc;
@@ -495,19 +499,19 @@ a:visited {
 .c-form--input + .c-form--label {
 	position: absolute;
 	top: 20px;
-	left: 5px;
-	transition: all .3s ease-in-out;
+	margin-left: 5px;
+	transition: all .2s ease-in-out;
 	pointer-events: none;
 }
 
 .c-form--input:focus,
-.c-form--input:valid {
+.c-form--input.is-inputted {
 	border-bottom: solid 1px #ff5252;
 	outline: none;
 }
 
 .c-form--input:focus + .c-form--label,
-.c-form--input:valid + .c-form--label {
+.c-form--input.is-inputted + .c-form--label {
 	font-size: 14px;
 	top: 0;
 	color: #ff5252;

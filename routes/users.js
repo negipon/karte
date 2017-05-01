@@ -3,14 +3,14 @@ var router = express.Router();
 var connection = require('../db/index.js');
 var multer = require('multer');
 
-var upload = multer({ dest: './uploads/' }).single('thumbnail');
+var upload = multer({ dest: './uploads/' }).single('avatar');
 
 router.post('/upload', function(req, res) {
 	upload(req, res, function(err) {
 		if(err) {
 			res.send('Failed to write ' + req.file);
 		} else {
-			res.send('uploaded ' + req.file.originalname + ' as ' + req.file.filename + ' Size: ' + req.file.size);
+			console.log('uploaded ' + req.file.originalname + ' as ' + req.file.filename + ' Size: ' + req.file.size);
 		}
 	});
 });
@@ -42,6 +42,14 @@ router.get('/add', isLogined, function(req, res, next) {
 			user:req.user,
 			users:rows
 		});
+	});
+});
+
+/* Add users. */
+router.post('/add', isLogined, function(req, res, next) {
+	connection.query('select * from users', function (err, rows) {
+
+
 	});
 });
 

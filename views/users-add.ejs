@@ -6,7 +6,7 @@
 					<div class="l-form--column column1-3 c-form--upload">
 						<form action="/users/upload" method="post" enctype="multipart/form-data">
 							<img src="http://placehold.jp/250x250.png">
-							<input type="file" onchange="uv.value = this.value;" name="thumbnail" id="user-upload-photo" class="c-form--upload-input">
+							<input type="file" onchange="uv.value = this.value;" name="avatar" id="user-upload-photo" class="c-form--upload-input">
 							<label for="user-upload-photo" class="c-form--upload-label"><i class="fa fa-file-image-o" aria-hidden="true"></i> Photo File Select</label>
 							<input type="text" id="uv" class="c-form--upload-value" disabled>
 							<input type="submit" value="submit" id="upload-submit" class="c-form--upload-input">
@@ -17,23 +17,23 @@
 						<form action="/users/add" method="post">
 							<div class="l-form--row">
 								<div class="l-form--row-cell c-form--input-wrap">
-									<input type="text" name="number" value="" class="c-form--input"  required>
+									<input type="text" name="number" value="" class="c-form--input jsc-input">
 									<label class="c-form--label">User Number</label>
 								</div>
 							</div>
 							<div class="l-form--row">
 								<div class="l-form--row-cell c-form--input-wrap">
-									<input type="text" name="username" value="" class="c-form--input"  required>
+									<input type="text" name="username" value="" class="c-form--input jsc-input">
 									<label class="c-form--label">User Name</label>
 								</div>
 								<div class="l-form--row-cell c-form--input-wrap">
-									<input type="text" name="dispayName" value="" class="c-form--input"  required>
+									<input type="text" name="dispayName" value="" class="c-form--input jsc-input">
 									<label class="c-form--label">Display Name</label>
 								</div>
 							</div>
 							<div class="l-form--row">
 								<div class="c-form--input-wrap">
-									<input type="text" name="email" value="" class="c-form--input"  required>
+									<input type="text" name="email" value="" class="c-form--input jsc-input">
 									<label class="c-form--label">E-mail</label>
 								</div>
 							</div>
@@ -53,7 +53,7 @@
 							</div>
 							<div class="l-form--row">
 								<div class="l-form--row-cell c-form--input-wrap">
-									<input type="password" name="password" value="" class="c-form--input"  required>
+									<input type="password" name="password" value="" class="c-form--input jsc-input">
 									<label class="c-form--label">Password</label>
 								</div>
 							</div>

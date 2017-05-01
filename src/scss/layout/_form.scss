@@ -16,6 +16,9 @@
 		}
 		&-cell {
 			display: table-cell;
+			+ .l-form--row-cell {
+				padding-left: 10px;
+			}
 		}
 		&-title {
 			padding: 25px 10px 5px 5px;
