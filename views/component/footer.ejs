@@ -3,5 +3,8 @@
 <script src="/js/modernizr.min.js"></script>
 <script src="/js/jquery_1.12.4.min.js"></script>
 <script src="/js/common/common.min.js"></script>
+<% if (page) { %>
+<script src="/js/page/<%= page %>.min.js"></script>
+<% } %>
 </body>
 </html>

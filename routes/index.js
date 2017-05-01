@@ -13,6 +13,7 @@ var isLogined = function(req, res, next){
 router.get('/', isLogined, function(req, res, next) {
 	res.render('index', {
 		title: 'Express',
+		page: 'index',
 		user:req.user
 	});
 });

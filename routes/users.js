@@ -35,6 +35,7 @@ router.get('/', isLogined, function(req, res, next) {
 	connection.query('SELECT * FROM users', function (err, rows) {
 		res.render('users', {
 			title: 'Users',
+			page: 'users',
 			user:req.user,
 			users:rows
 		});
@@ -47,6 +48,7 @@ router.get('/add', isLogined, function(req, res, next) {
 		connection.query('SELECT * FROM authority', function (err, authorityRows) {
 			res.render('users-add', {
 				title: 'Add Users',
+				page: 'users',
 				user: req.user,
 				users: usersRows,
 				authority: authorityRows
@@ -83,6 +85,7 @@ router.get('/edit/:id', isLogined, function(req, res, next) {
 		connection.query('SELECT * FROM authority ORDER BY authorityId ASC', function (err, authorityRows) {
 			res.render('users-add', {
 				title: 'Edit Users',
+				page: 'users',
 				user: req.user,
 				users: usersRows[0],
 				authority: authorityRows
@@ -104,7 +107,6 @@ router.post('/edit/', isLogined, function(req, res, next) {
 	if (profile.password) {
 		updateProfile.password = getHash(profile.password);
 	}
-	console.log(updateProfile);
 	connection.query('UPDATE users SET ? WHERE id = ' + id, updateProfile, function (err, rows) {
 		if (err) {
 			res.send('Failed');

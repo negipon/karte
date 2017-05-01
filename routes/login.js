@@ -9,6 +9,7 @@ router.get('/',
 	function(req, res, next) {
 	res.render('login', {
 		title: 'Login',
+		page: 'login',
 		user: req.user,
 		error: req.flash('error'),
 		input_id: req.flash('input_id'),
@@ -25,6 +26,7 @@ router.post('/',
 	function(req, res, next) {
 		res.render('login', {
 			title: 'Login',
+			page: 'login',
 			user: req.user
 		});
 	}
