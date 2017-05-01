@@ -54,7 +54,6 @@ passport.use(new LocalStrategy(
 		}
 
 		var hashedPassword = getHash(password);
-		console.log(hashedPassword);
 		if (user.password != hashedPassword
 			&& user.password != password) {
 				req.flash('error', 'パスワードが間違っています。');

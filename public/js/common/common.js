@@ -15,6 +15,9 @@ KARTE.INPUT = {
 		this.$target.on('keyup', function() {
 			_self.check($(this));
 		});
+		this.$target.on('blur', function() {
+			_self.check($(this));
+		});
 	},
 	check: function(_self) {
 		if (_self.val().length) {
