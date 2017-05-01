@@ -1,6 +1,6 @@
 var connection = require('./index.js');
 
-connection.query('SELECT * FROM users INNER JOIN authority ON users.authorityId = authority.authorityId  ORDER BY id ASC', function (err, rows) {
+connection.query('SELECT * FROM users INNER JOIN authority ON users.authorityId = authority.authorityId ORDER BY id ASC', function (err, rows) {
 	exports.findById = function(id, cb) {
 		process.nextTick(function() {
 			var idx = id - 1;
@@ -15,6 +15,7 @@ connection.query('SELECT * FROM users INNER JOIN authority ON users.authorityId 
 		process.nextTick(function() {
 			for (var i = 0, len = rows.length; i < len; i++) {
 				var record = rows[i];
+				console.log(record);
 				if (record.username === username) {
 					return cb(null, record);
 				}

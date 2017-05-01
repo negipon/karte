@@ -1,7 +1,14 @@
 <%- include('component/header') -%>
 	<div class="l-main c-main">
 		<div class="container">
-			<h2 class="c-heading--primary"><%= title %> Page</h2>
+			<div class="c-heading--wrap cf">
+				<% if (user.authorityId > 3) { %>
+				<a href="/users" title="Return" class="c-button--add">
+					<i class="fa fa-arrow-left" aria-hidden="true"></i>
+				</a>
+				<% } %>
+				<h2 class="c-heading--primary"><%= title %> Page</h2>
+			</div>
 			<div class="l-form--add l-form--table">
 					<div class="l-form--column column1-3 c-form--upload">
 						<form action="/users/upload" method="post" enctype="multipart/form-data">
@@ -46,22 +53,25 @@
 									<label class="c-form--label">Authority</label>
 								</div>
 								<div class="l-form--row-cell c-form--input-wrap">
-									<select name="authority" class="c-form--select" value="<%= users.authority %>">
-										<option value="1">Member</option>
-										<option value="2">Sub Leader</option>
-										<option value="3">Leader</option>
-										<option value="4">Assistant Manager</option>
-										<option value="5">Manager</option>
+									<select name="authority" class="c-form--select" value="<%= users.authorityId %>">
+									<% for (var i in authority) { %>
+										<% if (users.authorityId === authority[i].authorityId) { %>
+										<option value="<%= authority[i].authorityId %>" selected><%= authority[i].authorityName %></option>
+										<% } else { %>
+										<option value="<%= authority[i].authorityId %>"><%= authority[i].authorityName %></option>
+										<% } %>
+									<% } %>
 									</select>
 								</div>
 							</div>
 							<div class="l-form--row">
 								<div class="l-form--row-cell c-form--input-wrap">
-									<input type="password" name="password" value="<%= users.password %>" class="c-form--input jsc-input">
+									<input type="password" name="password" value="" class="c-form--input jsc-input">
 									<label class="c-form--label">Password</label>
 								</div>
 							</div>
 							<div class="l-form--row">
+							<input type="hidden" name="id" value="<%= users.id %>">
 								<div class="l-form--submit-wrap">
 									<input type="submit" value="<%= title %>" class="c-form--submit">
 								</div>

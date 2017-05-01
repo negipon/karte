@@ -9,7 +9,7 @@ router.get('/',
 	function(req, res, next) {
 	res.render('login', {
 		title: 'Login',
-		user:req.user,
+		user: req.user,
 		error: req.flash('error'),
 		input_id: req.flash('input_id'),
 		input_password: req.flash('input_password')

@@ -43,23 +43,14 @@ router.get('/', isLogined, function(req, res, next) {
 
 /* Add users. */
 router.get('/add', isLogined, function(req, res, next) {
-	connection.query('SELECT * FROM users', function (err, rows) {
-		res.render('users-add', {
-			title: 'Add Users',
-			user: req.user,
-			users: rows
-		});
-	});
-});
-
-/* Add users. */
-router.get('/edit/:id', isLogined, function(req, res, next) {
-	var id = req.params.id;
-	connection.query('SELECT * FROM users WHERE id = ' + id, function (err, rows) {
-		res.render('users-add', {
-			title: 'Edit Users',
-			user: req.user,
-			users: rows[0]
+	connection.query('SELECT * FROM users', function (err, usersRows) {
+		connection.query('SELECT * FROM authority', function (err, authorityRows) {
+			res.render('users-add', {
+				title: 'Add Users',
+				user: req.user,
+				users: usersRows,
+				authority: authorityRows
+			});
 		});
 	});
 });
@@ -85,5 +76,43 @@ router.post('/add', isLogined, function(req, res, next) {
 	});
 });
 
+/* Add users. */
+router.get('/edit/:id', isLogined, function(req, res, next) {
+	var id = req.params.id;
+	connection.query('SELECT * FROM users WHERE id = ' + id, function (err, usersRows) {
+		connection.query('SELECT * FROM authority ORDER BY authorityId ASC', function (err, authorityRows) {
+			res.render('users-add', {
+				title: 'Edit Users',
+				user: req.user,
+				users: usersRows[0],
+				authority: authorityRows
+			});
+		});
+	});
+});
+
+router.post('/edit/', isLogined, function(req, res, next) {
+	var profile = req.body;
+	var id = profile.id;
+	var updateProfile = {
+		number: profile.number,
+		authorityId: profile.authority,
+		username: profile.username,
+		displayName: profile.displayName,
+		email: profile.email
+	};
+	if (profile.password) {
+		updateProfile.password = getHash(profile.password);
+	}
+	console.log(updateProfile);
+	connection.query('UPDATE users SET ? WHERE id = ' + id, updateProfile, function (err, rows) {
+		if (err) {
+			res.send('Failed');
+		} else {
+			res.redirect('/users/edit/' + id);
+		}
+
+	});
+});
 
 module.exports = router;

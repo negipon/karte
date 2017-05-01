@@ -45,7 +45,7 @@ passport.use(new LocalStrategy(
 		if (err) {
 			return done(err);
 		}
-
+		console.log(username);
 		if (!user) {
 			req.flash('error', 'ユーザーが見つかりませんでした。');
 			req.flash('input_id', username);
@@ -97,6 +97,8 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/login', login);
 app.get('/logout', function(req, res){
+	delete require.cache[require.resolve('./db/user')];
+	var dbuser = require('./db/user');
 	req.logout();
 	res.redirect('/');
 });
