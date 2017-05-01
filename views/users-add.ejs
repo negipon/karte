@@ -2,65 +2,69 @@
 	<div class="l-main c-main">
 		<div class="container">
 			<h2 class="c-heading--primary"><%= title %> Page</h2>
-			<form action="/login" method="post" class="c-form--add">
-				<div class="l-form--add l-form--table">
+			<div class="l-form--add l-form--table">
 					<div class="l-form--column column1-3 c-form--upload">
-						<img src="http://placehold.jp/250x250.png">
-						<input type="file" onchange="uv.value = this.value;" name="user-photo" id="user-upload-photo" class="c-form--upload-input">
-						<label for="user-upload-photo" class="c-form--upload-label"><i class="fa fa-upload" aria-hidden="true"></i> Photo File Select</label>
-						<input type="text" id="uv" class="c-form--upload-value" disabled>
+						<form action="/users/upload" method="post" enctype="multipart/form-data">
+							<img src="http://placehold.jp/250x250.png">
+							<input type="file" onchange="uv.value = this.value;" name="thumbnail" id="user-upload-photo" class="c-form--upload-input">
+							<label for="user-upload-photo" class="c-form--upload-label"><i class="fa fa-file-image-o" aria-hidden="true"></i> Photo File Select</label>
+							<input type="text" id="uv" class="c-form--upload-value" disabled>
+							<input type="submit" value="submit" id="upload-submit" class="c-form--upload-input">
+							<label for="upload-submit" class="c-form--upload-label"><i class="fa fa-upload" aria-hidden="true"></i> Upload</label>
+						</form>
 					</div>
 					<div class="l-form--column">
-						<div class="l-form--row">
-							<div class="l-form--row-cell c-form--input-wrap">
-								<input type="text" name="number" value="" class="c-form--input" required>
-								<label class="c-form--label">User Number</label>
+						<form action="/users/add" method="post">
+							<div class="l-form--row">
+								<div class="l-form--row-cell c-form--input-wrap">
+									<input type="text" name="number" value="" class="c-form--input"  required>
+									<label class="c-form--label">User Number</label>
+								</div>
 							</div>
-						</div>
-						<div class="l-form--row">
-							<div class="l-form--row-cell c-form--input-wrap">
-								<input type="text" name="username" value="" class="c-form--input" required>
-								<label class="c-form--label">User Name</label>
+							<div class="l-form--row">
+								<div class="l-form--row-cell c-form--input-wrap">
+									<input type="text" name="username" value="" class="c-form--input"  required>
+									<label class="c-form--label">User Name</label>
+								</div>
+								<div class="l-form--row-cell c-form--input-wrap">
+									<input type="text" name="dispayName" value="" class="c-form--input"  required>
+									<label class="c-form--label">Display Name</label>
+								</div>
 							</div>
-							<div class="l-form--row-cell c-form--input-wrap">
-								<input type="text" name="dispayName" value="" class="c-form--input" required>
-								<label class="c-form--label">Display Name</label>
+							<div class="l-form--row">
+								<div class="c-form--input-wrap">
+									<input type="text" name="email" value="" class="c-form--input"  required>
+									<label class="c-form--label">E-mail</label>
+								</div>
 							</div>
-						</div>
-						<div class="l-form--row">
-							<div class="c-form--input-wrap">
-								<input type="text" name="email" value="" class="c-form--input" required>
-								<label class="c-form--label">E-mail</label>
+							<div class="l-form--row">
+								<div class="l-form--row-title l-form--row-cell">
+									<label class="c-form--label">Authority</label>
+								</div>
+								<div class="l-form--row-cell c-form--input-wrap">
+									<select name="authority" class="c-form--select">
+										<option value="1">Member</option>
+										<option value="2">Sub Leader</option>
+										<option value="3">Leader</option>
+										<option value="4">Assistant Manager</option>
+										<option value="5">Manager</option>
+									</select>
+								</div>
 							</div>
-						</div>
-						<div class="l-form--row">
-							<div class="l-form--row-title l-form--row-cell">
-								<label class="c-form--label">Authority</label>
+							<div class="l-form--row">
+								<div class="l-form--row-cell c-form--input-wrap">
+									<input type="password" name="password" value="" class="c-form--input"  required>
+									<label class="c-form--label">Password</label>
+								</div>
 							</div>
-							<div class="l-form--row-cell c-form--input-wrap">
-								<select name="authority" class="c-form--select" required>
-									<option value="1">Member</option>
-									<option value="2">Sub Leader</option>
-									<option value="3">Leader</option>
-									<option value="4">Assistant Manager</option>
-									<option value="5">Manager</option>
-								</select>
+							<div class="l-form--row">
+								<div class="l-form--submit-wrap">
+									<input type="submit" value="Add User" class="c-form--submit">
+								</div>
 							</div>
-						</div>
-						<div class="l-form--row">
-							<div class="l-form--row-cell c-form--input-wrap">
-								<input type="password" name="password" value="" class="c-form--input" required>
-								<label class="c-form--label">Password</label>
-							</div>
-						</div>
-						<div class="l-form--row">
-							<div class="l-form--submit-wrap">
-								<input type="submit" value="Add User" class="c-form--submit">
-							</div>
-						</div>
+						</form>
 					</div>
 				</div>
-			</form>
 		</div>
 	</div>
 <%- include('component/footer') -%>

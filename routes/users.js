@@ -1,6 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var connection = require('../db/index.js');
+var multer = require('multer');
+
+var upload = multer({ dest: './uploads/' }).single('thumbnail');
+
+router.post('/upload', function(req, res) {
+	upload(req, res, function(err) {
+		if(err) {
+			res.send('Failed to write ' + req.file);
+		} else {
+			res.send('uploaded ' + req.file.originalname + ' as ' + req.file.filename + ' Size: ' + req.file.size);
+		}
+	});
+});
 
 // リクエストがあったとき、ログイン済みかどうか確認する関数
 var isLogined = function(req, res, next){
@@ -31,5 +44,6 @@ router.get('/add', isLogined, function(req, res, next) {
 		});
 	});
 });
+
 
 module.exports = router;
