@@ -32,7 +32,7 @@ var isLogined = function(req, res, next){
 
 /* GET users listing. */
 router.get('/', isLogined, function(req, res, next) {
-	connection.query('select * from users', function (err, rows) {
+	connection.query('SELECT * FROM users', function (err, rows) {
 		res.render('users', {
 			title: 'Users',
 			user:req.user,
@@ -43,11 +43,23 @@ router.get('/', isLogined, function(req, res, next) {
 
 /* Add users. */
 router.get('/add', isLogined, function(req, res, next) {
-	connection.query('select * from users', function (err, rows) {
+	connection.query('SELECT * FROM users', function (err, rows) {
 		res.render('users-add', {
 			title: 'Add Users',
-			user:req.user,
-			users:rows
+			user: req.user,
+			users: rows
+		});
+	});
+});
+
+/* Add users. */
+router.get('/edit/:id', isLogined, function(req, res, next) {
+	var id = req.params.id;
+	connection.query('SELECT * FROM users WHERE id = ' + id, function (err, rows) {
+		res.render('users-add', {
+			title: 'Edit Users',
+			user: req.user,
+			users: rows[0]
 		});
 	});
 });
@@ -63,7 +75,6 @@ router.post('/add', isLogined, function(req, res, next) {
 		displayName: profile.dispayName,
 		email: profile.email
 	};
-	console.log(insertProfile);
 	connection.query('INSERT INTO users SET ?', insertProfile, function (err, rows) {
 		if (err) {
 			res.send('Failed');

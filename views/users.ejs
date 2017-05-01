@@ -19,7 +19,7 @@
 					<% } %>
 				</div>
 				<% for (var i in users) { %>
-				<a href="" class="c-table--user-row">
+				<a href="/users/edit/<%= users[i].id %>" class="c-table--user-row">
 					<% for (var key in users[i]) { %>
 					<% if (key !== 'password') { %>
 					<span class="c-table--user-cell"><%= users[i][key] %></span>

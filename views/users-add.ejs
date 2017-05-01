@@ -14,26 +14,30 @@
 						</form>
 					</div>
 					<div class="l-form--column">
+						<% if (title == 'Edit Users') { %>
+						<form action="/users/edit" method="post">
+						<% } else { %>
 						<form action="/users/add" method="post">
+						<% } %>
 							<div class="l-form--row">
 								<div class="l-form--row-cell c-form--input-wrap">
-									<input type="text" name="number" value="" class="c-form--input jsc-input">
+									<input type="text" name="number" value="<%= users.number %>" class="c-form--input jsc-input">
 									<label class="c-form--label">User Number</label>
 								</div>
 							</div>
 							<div class="l-form--row">
 								<div class="l-form--row-cell c-form--input-wrap">
-									<input type="text" name="username" value="" class="c-form--input jsc-input">
+									<input type="text" name="username" value="<%= users.username %>" class="c-form--input jsc-input">
 									<label class="c-form--label">User Name</label>
 								</div>
 								<div class="l-form--row-cell c-form--input-wrap">
-									<input type="text" name="dispayName" value="" class="c-form--input jsc-input">
+									<input type="text" name="displayName" value="<%= users.displayName %>" class="c-form--input jsc-input">
 									<label class="c-form--label">Display Name</label>
 								</div>
 							</div>
 							<div class="l-form--row">
 								<div class="c-form--input-wrap">
-									<input type="text" name="email" value="" class="c-form--input jsc-input">
+									<input type="text" name="email" value="<%= users.email %>" class="c-form--input jsc-input">
 									<label class="c-form--label">E-mail</label>
 								</div>
 							</div>
@@ -42,7 +46,7 @@
 									<label class="c-form--label">Authority</label>
 								</div>
 								<div class="l-form--row-cell c-form--input-wrap">
-									<select name="authority" class="c-form--select">
+									<select name="authority" class="c-form--select" value="<%= users.authority %>">
 										<option value="1">Member</option>
 										<option value="2">Sub Leader</option>
 										<option value="3">Leader</option>
@@ -53,13 +57,13 @@
 							</div>
 							<div class="l-form--row">
 								<div class="l-form--row-cell c-form--input-wrap">
-									<input type="password" name="password" value="" class="c-form--input jsc-input">
+									<input type="password" name="password" value="<%= users.password %>" class="c-form--input jsc-input">
 									<label class="c-form--label">Password</label>
 								</div>
 							</div>
 							<div class="l-form--row">
 								<div class="l-form--submit-wrap">
-									<input type="submit" value="Add User" class="c-form--submit">
+									<input type="submit" value="<%= title %>" class="c-form--submit">
 								</div>
 							</div>
 						</form>
