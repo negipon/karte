@@ -371,6 +371,12 @@ a:visited {
 	outline: 0;
 }
 
+a:hover,
+input:hover,
+label:hover {
+	opacity: .7;
+}
+
 .container {
 	max-width: 1000px;
 	margin-right: auto;
@@ -561,6 +567,17 @@ a:visited {
 	padding: 10px;
 	color: #fff;
 	background-color: #ff5252;
+}
+
+.c-form--delete {
+	font-size: 24px;
+	display: inline-block;
+}
+
+.c-form--delete-wrap {
+	margin-top: 20px;
+	padding: 10px;
+	text-align: center;
 }
 
 .c-form--error {

@@ -133,5 +133,17 @@ router.post('/edit/', isLogined, function(req, res, next) {
 		});
 	});
 });
+router.post('/edit/delete', function(req, res, next) {
+	var id = req.query.id;
+	console.log(id);
+	connection.query('DELETE FROM users WHERE id = ' + id, function (err, rows) {
+		if (err) {
+			res.send('Failed');
+		} else {
+			res.redirect('/users/');
+		}
+
+	});
+});
 
 module.exports = router;

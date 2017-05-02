@@ -23,6 +23,11 @@ a, a:active, a:visited {
 	text-decoration: none;
 	outline: 0;
 }
+a, input, label {
+	&:hover {
+		opacity: .7;
+	}
+}
 .container {
 	max-width: 1000px;
 	margin-left: auto;

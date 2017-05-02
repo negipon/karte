@@ -6,21 +6,12 @@ KARTE.USER.upload = {
 		this.bindEvent();
 	},
 	setParameters: function() {
-		this.$target = $('.jsc-upload-form');
-		this.$input = this.$target.find('input');
-		this.$uploadImage = $('.jsc-upload-image');
 		this.$uploadFile = $('.jsc-upload-file');
+		this.$userDelete = $('.jsc-user-delete');
 		this.$uploadValue = $('#jsi-upload-value');
 	},
 	bindEvent: function() {
 		var _self = this;
-		this.$target.on('submit', function(e) {
-			for (var i = 0; i < _self.$input.length; i++) {
-				console.log(_self.$input.eq(i).val());
-			}
-			// _self.postAjax();
-			// return false;
-		});
 		this.$uploadFile.on('change', function() {
 			var file = $(this)[0].files;
 			var reg = /(.*)(?:\.([^.]+$))/;
@@ -32,19 +23,20 @@ KARTE.USER.upload = {
 			}
 			_self.$uploadValue.val(fileName + '.' + fileTyle);
 		});
+		this.$userDelete.on('click', function(e) {
+			e.preventDefault();
+			_self.userDelete($(this).attr('href'));
+		});
 	},
-	postAjax: function() {
+	userDelete: function(targetUrl) {
 		$.ajax({
-			url: '/users/upload',
 			type: 'POST',
-			timeout: 5000,
+			url: targetUrl,
 			success: function(data){
-				console.log(data);
-			},
-			error: function(){
-				console.log('Failed to write');
+				location.href = '../';
 			}
-		})
+		});
+
 	}
 };
 KARTE.USER.upload.init();

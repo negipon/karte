@@ -65,6 +65,15 @@
 		display: block;
 		width: 100%;
 	}
+	&--delete {
+		display: inline-block;
+		font-size: 24px;
+		&-wrap {
+			margin-top: 20px;
+			padding: 10px;
+			text-align: center;
+		}
+	}
 	&--error {
 		text-align: center;
 		color: red;

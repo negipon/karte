@@ -77,10 +77,15 @@
 							</div>
 						</div>
 						<div class="l-form--row">
-						<input type="hidden" name="id" value="<%= users.id %>">
+							<input type="hidden" name="id" value="<%= users.id %>">
 							<div class="l-form--submit-wrap">
 								<input type="submit" value="<%= title %>" class="c-form--submit">
 							</div>
+						</div>
+						<div class="c-form--delete-wrap">
+							<% if (title == 'Edit Users') { %>
+							<a href="/users/edit/delete?id=<%= users.id %>" class="c-form--delete jsc-user-delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+							<% } %>
 						</div>
 					</div>
 				</form>
