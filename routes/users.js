@@ -32,7 +32,7 @@ var getHash = function(value) {
 
 /* GET users listing. */
 router.get('/', isLogined, function(req, res, next) {
-	connection.query('SELECT * FROM users', function (err, rows) {
+	connection.query('SELECT * FROM users INNER JOIN authority ON users.authorityId = authority.authorityId', function (err, rows) {
 		res.render('users', {
 			title: 'Users List',
 			page: 'users',

@@ -491,6 +491,55 @@ label:hover {
 	vertical-align: middle;
 }
 
+.c-card--list {
+	margin-left: -10px;
+}
+
+.c-card--list > li {
+	display: inline-block;
+	width: 33.333%;
+	margin-top: 10px;
+	padding-left: 10px;
+	vertical-align: top;
+}
+
+.c-card--user {
+	position: relative;
+	display: block;
+	min-height: 120px;
+	padding: 10px;
+	color: #333;
+	background-color: #fff;
+}
+
+.c-card--user:visited {
+	color: #333;
+}
+
+.c-card--title {
+	overflow: hidden;
+}
+
+.c-card--username {
+	font-size: 14px;
+	margin-left: 10px;
+	color: #999;
+}
+
+.c-card--avatar {
+	top: 10px;
+	left: 10px;
+	float: left;
+	overflow: hidden;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+
+.c-card--avatar + .c-card--title {
+	padding-left: 10px;
+}
+
 .c-form--label {
 	color: #aaa;
 }

@@ -10,23 +10,38 @@
 				<h2 class="c-heading--primary"><%= title %> Page</h2>
 			</div>
 			<% if (user.authorityId > 3) { %>
-			<div class="c-table--user">
-				<div class="c-table--user-row c-table--user-title">
-					<% for (var key in users[0]) { %>
-					<% if (key !== 'password') { %>
-					<span class="c-table--user-cell"><%= key %></span>
-					<% } %>
-					<% } %>
-				</div>
-				<% for (var i in users) { %>
-				<a href="/users/edit/<%= users[i].id %>" class="c-table--user-row">
-					<% for (var key in users[i]) { %>
-					<% if (key !== 'password') { %>
-					<span class="c-table--user-cell"><%= users[i][key] %></span>
-					<% } %>
-					<% } %>
-				</a>
-				<% } %>
+			<div class="c-card--wrap">
+				<ul class="c-card--list">
+					<!--
+					<% for (var i in users) { %>
+					--><li>
+						<a href="/users/edit/<%= users[i].id %>" class="c-card--user cf">
+							<figure class="c-card--avatar">
+								<% if (users[i].avatarFile) { %>
+								<img src="/uploads/avatar/<%= users[i].avatarFile %>">
+								<% } else { %>
+								<img src="//placehold.jp/100x100.png">
+								<% } %>
+							</figure>
+							<div class="c-card--title">
+								<h3>
+									<span class="c-card--display"><%= users[i].displayName %></span>
+									<span class="c-card--username"><%= users[i].username %></span>
+								</h3>
+								<ul class="c-card--profile-list">
+									<li><span class="c-card--number"><%= users[i].number %></span></li>
+									<li><span class="c-card--authority"><%= users[i].authorityName %></span></li>
+									<li>
+										<i class="fa fa-envelope-o" aria-hidden="true"></i>
+										<span class="c-card--email"><%= users[i].email %></span>
+									</li>
+								</ul>
+								<span class="c-card--id"><%= users[i].id %></span>
+							</div>
+						</a>
+					</li><!--
+					<% } %>-->
+				</ul>
 			</div>
 			<% } else { %>
 			<p>権限がありません。</p>
