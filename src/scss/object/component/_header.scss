@@ -16,8 +16,6 @@
 		&-primary {
 			display: inline-block;
 			vertical-align: middle;
-		}
-		&-primary {
 			font-size: 24px;
 			+ .c-header--heading-secondary {
 				margin-left: 20px;
@@ -27,9 +25,12 @@
 	&--display {
 		&-name {
 			display: inline-block;
+			font-size: 12px;
+			vertical-align: middle;
 		}
 	}
 	&--logout {
 		display: inline-block;
+		vertical-align: middle;
 	}
 }

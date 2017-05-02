@@ -3,24 +3,7 @@ var router = express.Router();
 var connection = require('../db/index.js');
 var multer = require('multer');
 var crypto = require('crypto');
-
-var upload = multer({ dest: './uploads/' }).single('avatar');
-
-var getHash = function(value) {
-	var sha = crypto.createHmac('sha256', 'secretKey');
-	sha.update(value);
-	return sha.digest('hex');
-};
-
-router.post('/upload', function(req, res) {
-	upload(req, res, function(err) {
-		if(err) {
-			res.send('Failed to write ' + req.file);
-		} else {
-			console.log('uploaded ' + req.file.originalname + ' as ' + req.file.filename + ' Size: ' + req.file.size);
-		}
-	});
-});
+var path = require('path');
 
 // リクエストがあったとき、ログイン済みかどうか確認する関数
 var isLogined = function(req, res, next){
@@ -29,6 +12,37 @@ var isLogined = function(req, res, next){
 	// ログインしてなかったらログイン画面に飛ばす
 	res.redirect('/login');
 };
+
+// var upload = multer({ dest: './public/uploads/avator' }).single('avatar');
+
+var storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, './public/uploads/avator');
+	},
+	filename: function (req, file, cb) {
+		cb(null, file.originalname + '-' + Date.now() + path.extname(file.originalname));
+	}
+});
+
+var upload = multer({ storage: storage }).single('avatar');
+
+var getHash = function(value) {
+	var sha = crypto.createHmac('sha256', 'secretKey');
+	sha.update(value);
+	return sha.digest('hex');
+};
+
+router.post('/upload', function(req, res, next) {
+	var fileName = req.body.uploadValue;
+	upload(req, res, function(err) {
+	  if(err) {
+	    console.log('Error Occured');
+	    return;
+	  }
+	  console.log(fileName);
+	next();
+  })
+});
 
 /* GET users listing. */
 router.get('/', isLogined, function(req, res, next) {

@@ -585,12 +585,9 @@ a:visited {
 }
 
 .c-header--heading-primary {
+	font-size: 24px;
 	display: inline-block;
 	vertical-align: middle;
-}
-
-.c-header--heading-primary {
-	font-size: 24px;
 }
 
 .c-header--heading-primary + .c-header--heading-secondary {
@@ -598,11 +595,14 @@ a:visited {
 }
 
 .c-header--display-name {
+	font-size: 12px;
 	display: inline-block;
+	vertical-align: middle;
 }
 
 .c-header--logout {
 	display: inline-block;
+	vertical-align: middle;
 }
 
 .c-heading--wrap + * {

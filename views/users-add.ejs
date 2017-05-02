@@ -11,13 +11,24 @@
 			</div>
 			<div class="l-form--add l-form--table">
 					<div class="l-form--column column1-3 c-form--upload">
-						<form action="/users/upload" method="post" enctype="multipart/form-data" class="jsc-upload">
-							<img src="http://placehold.jp/250x250.png">
-							<input type="file" onchange="uv.value = this.value;" name="avatar" id="user-upload-photo" class="c-form--upload-input">
-							<label for="user-upload-photo" class="c-form--upload-label"><i class="fa fa-file-image-o" aria-hidden="true"></i> Photo File Select</label>
-							<input type="text" id="uv" class="c-form--upload-value" disabled>
+						<form action="/users/upload" method="post" enctype="multipart/form-data" class="jsc-upload-form">
+							<img src="http://placehold.jp/250x250.png" class="jsc-upload-image">
+
+							<input type="file" name="avatar" id="user-upload-photo" class="c-form--upload-input jsc-upload-file">
+
+							<label for="user-upload-photo" class="c-form--upload-label">
+								<i class="fa fa-file-image-o" aria-hidden="true"></i>
+								Photo File Select
+							</label>
+
+							<input type="text" id="uv" name="uploadValue" class="c-form--upload-value" disabled>
+
 							<input type="submit" value="submit" id="upload-submit" class="c-form--upload-input">
-							<label for="upload-submit" class="c-form--upload-label"><i class="fa fa-upload" aria-hidden="true"></i> Upload</label>
+
+							<label for="upload-submit" class="c-form--upload-label">
+								<i class="fa fa-upload" aria-hidden="true"></i>
+								Upload
+							</label>
 						</form>
 					</div>
 					<div class="l-form--column">
@@ -53,7 +64,7 @@
 									<label class="c-form--label">Authority</label>
 								</div>
 								<div class="l-form--row-cell c-form--input-wrap">
-									<select name="authority" class="c-form--select" value="<%= users.authorityId %>">
+									<select name="authority" class="c-form--select">
 									<% for (var i in authority) { %>
 										<% if (users.authorityId === authority[i].authorityId) { %>
 										<option value="<%= authority[i].authorityId %>" selected><%= authority[i].authorityName %></option>
