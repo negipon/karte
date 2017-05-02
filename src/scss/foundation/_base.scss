@@ -1,3 +1,4 @@
+$primary-color: #ff5252;
 .cf:after {
 	content: '';
 	display: table;
@@ -18,7 +19,7 @@ ul,ol {
 	list-style: none;
 }
 a, a:active, a:visited {
-	color: #ff5252;
+	color: $primary-color;
 	text-decoration: none;
 	outline: 0;
 }
