@@ -34,7 +34,7 @@ var getHash = function(value) {
 router.get('/', isLogined, function(req, res, next) {
 	connection.query('SELECT * FROM users', function (err, rows) {
 		res.render('users', {
-			title: 'Users',
+			title: 'Users List',
 			page: 'users',
 			user:req.user,
 			users:rows

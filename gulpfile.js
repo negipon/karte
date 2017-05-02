@@ -22,7 +22,7 @@ gulp.task('sass',function(){
         .pipe(frontnote({
             out: 'docs/css'
         }))
-        .pipe(sourcemaps.init())
+        // .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(autoPrefixer())
         .pipe(cssComb())
@@ -31,8 +31,8 @@ gulp.task('sass',function(){
         .pipe(rename({
             suffix: '.min'
         }))
-        // .pipe(cleanCss())
-        .pipe(sourcemaps.write())
+        .pipe(cleanCss())
+        // .pipe(sourcemaps.write())
         .pipe(gulp.dest('public/css'))
 });
 gulp.task('js',function(){

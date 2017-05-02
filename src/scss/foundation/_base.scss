@@ -23,7 +23,7 @@ a, a:active, a:visited {
 	text-decoration: none;
 	outline: 0;
 }
-a, input, label {
+a, input[type="submit"], label {
 	&:hover {
 		opacity: .7;
 	}

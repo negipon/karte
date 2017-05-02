@@ -34,7 +34,7 @@
 					<div class="l-form--column">
 						<div class="l-form--row">
 							<div class="l-form--row-cell c-form--input-wrap">
-								<input type="text" name="number" value="<%= users.number %>" class="c-form--input jsc-input">
+								<input type="number" name="number" value="<%= users.number %>" pattern="[1-9][0-9]*" class="c-form--input jsc-input">
 								<label class="c-form--label">User Number</label>
 							</div>
 						</div>
@@ -50,7 +50,7 @@
 						</div>
 						<div class="l-form--row">
 							<div class="c-form--input-wrap">
-								<input type="text" name="email" value="<%= users.email %>" class="c-form--input jsc-input">
+								<input type="email" name="email" value="<%= users.email %>" class="c-form--input jsc-input">
 								<label class="c-form--label">E-mail</label>
 							</div>
 						</div>
@@ -59,15 +59,17 @@
 								<label class="c-form--label">Authority</label>
 							</div>
 							<div class="l-form--row-cell c-form--input-wrap">
-								<select name="authority" class="c-form--select">
-								<% for (var i in authority) { %>
-									<% if (users.authorityId === authority[i].authorityId) { %>
-									<option value="<%= authority[i].authorityId %>" selected><%= authority[i].authorityName %></option>
-									<% } else { %>
-									<option value="<%= authority[i].authorityId %>"><%= authority[i].authorityName %></option>
+								<label class="c-form--select-wrap">
+									<select name="authority" class="c-form--select">
+									<% for (var i in authority) { %>
+										<% if (users.authorityId === authority[i].authorityId) { %>
+										<option value="<%= authority[i].authorityId %>" selected><%= authority[i].authorityName %></option>
+										<% } else { %>
+										<option value="<%= authority[i].authorityId %>"><%= authority[i].authorityName %></option>
+										<% } %>
 									<% } %>
-								<% } %>
-								</select>
+									</select>
+								</label>
 							</div>
 						</div>
 						<div class="l-form--row">
