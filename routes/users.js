@@ -45,7 +45,7 @@ router.get('/', isLogined, function(req, res, next) {
 /* Add users. */
 router.get('/add', isLogined, function(req, res, next) {
 	connection.query('SELECT * FROM users', function (err, usersRows) {
-		connection.query('SELECT * FROM authority', function (err, authorityRows) {
+		connection.query('SELECT * FROM authority ORDER BY authorityId ASC', function (err, authorityRows) {
 			res.render('users-add', {
 				title: 'Add Users',
 				page: 'users',
