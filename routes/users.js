@@ -13,14 +13,12 @@ var isLogined = function(req, res, next){
 	res.redirect('/login');
 };
 
-// var upload = multer({ dest: './public/uploads/avator' }).single('avatar');
-
 var storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		cb(null, './public/uploads/avator');
+		cb(null, './public/uploads/avatar');
 	},
 	filename: function (req, file, cb) {
-		cb(null, file.originalname + '-' + Date.now() + path.extname(file.originalname));
+		cb(null, file.originalname);
 	}
 });
 
@@ -31,18 +29,6 @@ var getHash = function(value) {
 	sha.update(value);
 	return sha.digest('hex');
 };
-
-router.post('/upload', function(req, res, next) {
-	var fileName = req.body.uploadValue;
-	upload(req, res, function(err) {
-	  if(err) {
-	    console.log('Error Occured');
-	    return;
-	  }
-	  console.log(fileName);
-	next();
-  })
-});
 
 /* GET users listing. */
 router.get('/', isLogined, function(req, res, next) {
@@ -73,22 +59,30 @@ router.get('/add', isLogined, function(req, res, next) {
 
 /* Add users. */
 router.post('/add', isLogined, function(req, res, next) {
-	var profile = req.body;
-	var insertProfile = {
-		number: profile.number,
-		authorityId: profile.authority,
-		username: profile.username,
-		password: getHash(profile.password),
-		displayName: profile.dispayName,
-		email: profile.email
-	};
-	connection.query('INSERT INTO users SET ?', insertProfile, function (err, rows) {
-		if (err) {
-			res.send('Failed');
-		} else {
-			res.redirect('/users');
+	upload(req, res, function(err) {
+		if(err) {
+			console.log('Error Occured');
+			return;
 		}
-
+		var profile = req.body;
+		var insertProfile = {
+			number: profile.number,
+			authorityId: profile.authority,
+			username: profile.username,
+			password: getHash(profile.password),
+			displayName: profile.displayName,
+			email: profile.email
+		};
+		if (req.file) {
+			insertProfile.avatarFile = req.file.filename;
+		}
+		connection.query('INSERT INTO users SET ?', insertProfile, function (err, rows) {
+			if (err) {
+				res.send('Failed');
+			} else {
+				res.redirect('/users');
+			}
+		});
 	});
 });
 
@@ -109,25 +103,34 @@ router.get('/edit/:id', isLogined, function(req, res, next) {
 });
 
 router.post('/edit/', isLogined, function(req, res, next) {
-	var profile = req.body;
-	var id = profile.id;
-	var updateProfile = {
-		number: profile.number,
-		authorityId: profile.authority,
-		username: profile.username,
-		displayName: profile.displayName,
-		email: profile.email
-	};
-	if (profile.password) {
-		updateProfile.password = getHash(profile.password);
-	}
-	connection.query('UPDATE users SET ? WHERE id = ' + id, updateProfile, function (err, rows) {
-		if (err) {
-			res.send('Failed');
-		} else {
-			res.redirect('/users/edit/' + id);
+	upload(req, res, function(err) {
+		if(err) {
+			console.log('Error Occured');
+			return;
 		}
+		var profile = req.body;
+		var id = profile.id;
+		var updateProfile = {
+			number: profile.number,
+			authorityId: profile.authority,
+			username: profile.username,
+			displayName: profile.displayName,
+			email: profile.email
+		};
+		if (profile.password) {
+			updateProfile.password = getHash(profile.password);
+		}
+		if (req.file) {
+			updateProfile.avatarFile = req.file.filename;
+		}
+		connection.query('UPDATE users SET ? WHERE id = ' + id, updateProfile, function (err, rows) {
+			if (err) {
+				res.send('Failed');
+			} else {
+				res.redirect('/users/edit/' + id);
+			}
 
+		});
 	});
 });
 

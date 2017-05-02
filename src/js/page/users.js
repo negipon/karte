@@ -10,6 +10,7 @@ KARTE.USER.upload = {
 		this.$input = this.$target.find('input');
 		this.$uploadImage = $('.jsc-upload-image');
 		this.$uploadFile = $('.jsc-upload-file');
+		this.$uploadValue = $('#jsi-upload-value');
 	},
 	bindEvent: function() {
 		var _self = this;
@@ -29,7 +30,7 @@ KARTE.USER.upload = {
 					var fileTyle = file[i].name.match(reg)[2];
 				}
 			}
-			$('#uv').val(fileName + '_' + Date.now() + '.' + fileTyle);
+			_self.$uploadValue.val(fileName + '.' + fileTyle);
 		});
 	},
 	postAjax: function() {

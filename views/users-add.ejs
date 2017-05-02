@@ -10,86 +10,81 @@
 				<h2 class="c-heading--primary"><%= title %> Page</h2>
 			</div>
 			<div class="l-form--add l-form--table">
+				<% if (title == 'Edit Users') { %>
+				<form action="/users/edit" method="post" enctype="multipart/form-data">
+				<% } else { %>
+				<form action="/users/add" method="post" enctype="multipart/form-data">
+				<% } %>
 					<div class="l-form--column column1-3 c-form--upload">
-						<form action="/users/upload" method="post" enctype="multipart/form-data" class="jsc-upload-form">
-							<img src="http://placehold.jp/250x250.png" class="jsc-upload-image">
+						<% if (users.avatarFile) { %>
+						<img src="/uploads/avatar/<%= users.avatarFile %>">
+						<% } else { %>
+						<img src="http://placehold.jp/250x250.png">
+						<% } %>
 
-							<input type="file" name="avatar" id="user-upload-photo" class="c-form--upload-input jsc-upload-file">
+						<input type="file" name="avatar" id="user-upload-photo" class="c-form--upload-input jsc-upload-file">
 
-							<label for="user-upload-photo" class="c-form--upload-label">
-								<i class="fa fa-file-image-o" aria-hidden="true"></i>
-								Photo File Select
-							</label>
+						<label for="user-upload-photo" class="c-form--upload-label">
+							<i class="fa fa-file-image-o" aria-hidden="true"></i>
+							Photo File Select
+						</label>
 
-							<input type="text" id="uv" name="uploadValue" class="c-form--upload-value" disabled>
-
-							<input type="submit" value="submit" id="upload-submit" class="c-form--upload-input">
-
-							<label for="upload-submit" class="c-form--upload-label">
-								<i class="fa fa-upload" aria-hidden="true"></i>
-								Upload
-							</label>
-						</form>
+						<input type="text" id="jsi-upload-value" name="uploadValue" class="c-form--upload-value" value="<%= users.avatarFile %>" disabled readonly>
 					</div>
 					<div class="l-form--column">
-						<% if (title == 'Edit Users') { %>
-						<form action="/users/edit" method="post">
-						<% } else { %>
-						<form action="/users/add" method="post">
-						<% } %>
-							<div class="l-form--row">
-								<div class="l-form--row-cell c-form--input-wrap">
-									<input type="text" name="number" value="<%= users.number %>" class="c-form--input jsc-input">
-									<label class="c-form--label">User Number</label>
-								</div>
+						<div class="l-form--row">
+							<div class="l-form--row-cell c-form--input-wrap">
+								<input type="text" name="number" value="<%= users.number %>" class="c-form--input jsc-input">
+								<label class="c-form--label">User Number</label>
 							</div>
-							<div class="l-form--row">
-								<div class="l-form--row-cell c-form--input-wrap">
-									<input type="text" name="username" value="<%= users.username %>" class="c-form--input jsc-input">
-									<label class="c-form--label">User Name</label>
-								</div>
-								<div class="l-form--row-cell c-form--input-wrap">
-									<input type="text" name="displayName" value="<%= users.displayName %>" class="c-form--input jsc-input">
-									<label class="c-form--label">Display Name</label>
-								</div>
+						</div>
+						<div class="l-form--row">
+							<div class="l-form--row-cell c-form--input-wrap">
+								<input type="text" name="username" value="<%= users.username %>" class="c-form--input jsc-input">
+								<label class="c-form--label">User Name</label>
 							</div>
-							<div class="l-form--row">
-								<div class="c-form--input-wrap">
-									<input type="text" name="email" value="<%= users.email %>" class="c-form--input jsc-input">
-									<label class="c-form--label">E-mail</label>
-								</div>
+							<div class="l-form--row-cell c-form--input-wrap">
+								<input type="text" name="displayName" value="<%= users.displayName %>" class="c-form--input jsc-input">
+								<label class="c-form--label">Display Name</label>
 							</div>
-							<div class="l-form--row">
-								<div class="l-form--row-title l-form--row-cell">
-									<label class="c-form--label">Authority</label>
-								</div>
-								<div class="l-form--row-cell c-form--input-wrap">
-									<select name="authority" class="c-form--select">
-									<% for (var i in authority) { %>
-										<% if (users.authorityId === authority[i].authorityId) { %>
-										<option value="<%= authority[i].authorityId %>" selected><%= authority[i].authorityName %></option>
-										<% } else { %>
-										<option value="<%= authority[i].authorityId %>"><%= authority[i].authorityName %></option>
-										<% } %>
+						</div>
+						<div class="l-form--row">
+							<div class="c-form--input-wrap">
+								<input type="text" name="email" value="<%= users.email %>" class="c-form--input jsc-input">
+								<label class="c-form--label">E-mail</label>
+							</div>
+						</div>
+						<div class="l-form--row">
+							<div class="l-form--row-title l-form--row-cell">
+								<label class="c-form--label">Authority</label>
+							</div>
+							<div class="l-form--row-cell c-form--input-wrap">
+								<select name="authority" class="c-form--select">
+								<% for (var i in authority) { %>
+									<% if (users.authorityId === authority[i].authorityId) { %>
+									<option value="<%= authority[i].authorityId %>" selected><%= authority[i].authorityName %></option>
+									<% } else { %>
+									<option value="<%= authority[i].authorityId %>"><%= authority[i].authorityName %></option>
 									<% } %>
-									</select>
-								</div>
+								<% } %>
+								</select>
 							</div>
-							<div class="l-form--row">
-								<div class="l-form--row-cell c-form--input-wrap">
-									<input type="password" name="password" value="" class="c-form--input jsc-input">
-									<label class="c-form--label">Password</label>
-								</div>
+						</div>
+						<div class="l-form--row">
+							<div class="l-form--row-cell c-form--input-wrap">
+								<input type="password" name="password" value="" class="c-form--input jsc-input">
+								<label class="c-form--label">Password</label>
 							</div>
-							<div class="l-form--row">
-							<input type="hidden" name="id" value="<%= users.id %>">
-								<div class="l-form--submit-wrap">
-									<input type="submit" value="<%= title %>" class="c-form--submit">
-								</div>
+						</div>
+						<div class="l-form--row">
+						<input type="hidden" name="id" value="<%= users.id %>">
+							<div class="l-form--submit-wrap">
+								<input type="submit" value="<%= title %>" class="c-form--submit">
 							</div>
-						</form>
+						</div>
 					</div>
-				</div>
+				</form>
+			</div>
 		</div>
 	</div>
 <%- include('component/footer') -%>
