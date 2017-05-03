@@ -40,7 +40,7 @@ router.get('/', isLogined, function(req, res, next) {
 		res.render('users', {
 			title: 'Users List',
 			page: 'users',
-			user:req.user,
+			user: req.user,
 			users:rows
 		});
 	});
@@ -75,7 +75,12 @@ router.post('/add', isLogined, function(req, res, next) {
 			username: profile.username,
 			password: getHash(profile.password),
 			displayName: profile.displayName,
-			email: profile.email
+			email: profile.email,
+			favorite: profile.favorite,
+			birthday: profile.birthday,
+			hireDate: profile.hireDate,
+			bloodType: profile.bloodType,
+			tel: profile.tel
 		};
 		if (req.file) {
 			insertProfile.avatarFile = req.file.filename;
@@ -119,7 +124,12 @@ router.post('/edit/', isLogined, function(req, res, next) {
 			authorityId: profile.authority,
 			username: profile.username,
 			displayName: profile.displayName,
-			email: profile.email
+			email: profile.email,
+			favorite: profile.favorite,
+			birthday: profile.birthday,
+			hireDate: profile.hireDate,
+			bloodType: profile.bloodType,
+			tel: profile.tel
 		};
 		if (profile.password) {
 			updateProfile.password = getHash(profile.password);
@@ -139,7 +149,6 @@ router.post('/edit/', isLogined, function(req, res, next) {
 });
 router.post('/edit/delete', function(req, res, next) {
 	var id = req.query.id;
-	console.log(id);
 	connection.query('DELETE FROM users WHERE id = ' + id, function (err, rows) {
 		if (err) {
 			res.send('Failed');

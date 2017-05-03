@@ -5,12 +5,10 @@ $primary-color: #ff5252;
 	clear: both;
 }
 html {
-	height: 100%;
-	min-height: 100%;
+	min-height: 100vh;
 }
 body {
 	font-family: 'Varela Round', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Yu Gothic', YuGothic, 'ヒラギノ角ゴ ProN W3', Hiragino Kaku Gothic ProN, Arial, 'メイリオ', Meiryo, sans-serif;
-	height: inherit;
 	min-height: inherit;
 }
 ul,ol {

@@ -1,4 +1,23 @@
 <%- include('component/header') -%>
+<%
+	var formatDate = function (date, format) {
+		if (date && date !== '0000-00-00') {
+			if (!format) format = 'YYYY-MM-DD';
+			format = format.replace(/YYYY/g, date.getFullYear());
+			format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2));
+			format = format.replace(/DD/g, ('0' + date.getDate()).slice(-2));
+			format = format.replace(/hh/g, ('0' + date.getHours()).slice(-2));
+			format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2));
+			format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2));
+			if (format.match(/S/g)) {
+				var milliSeconds = ('00' + date.getMilliseconds()).slice(-3);
+				var length = format.match(/S/g).length;
+				for (var i = 0; i < length; i++) format = format.replace(/S/, milliSeconds.substring(i, i + 1));
+			}
+			return format;
+		}
+	};
+%>
 	<div class="l-main c-main">
 		<div class="container">
 			<div class="l-heading c-heading--wrap cf">
@@ -34,28 +53,48 @@
 						<input type="text" id="jsi-upload-value" name="uploadValue" class="c-form--upload-value" value="<%= users.avatarFile %>" disabled readonly>
 					</div>
 					<div class="l-form--column">
+
+						<%# NUMBER %>
 						<div class="l-form--row">
 							<div class="l-form--row-cell c-form--input-wrap">
 								<input type="number" name="number" value="<%= users.number %>" pattern="[1-9][0-9]*" class="c-form--input jsc-input">
 								<label class="c-form--label">User Number</label>
 							</div>
 						</div>
+
+						<%# USER NAME %>
 						<div class="l-form--row">
 							<div class="l-form--row-cell c-form--input-wrap">
 								<input type="text" name="username" value="<%= users.username %>" class="c-form--input jsc-input">
 								<label class="c-form--label">User Name</label>
 							</div>
+						</div>
+
+						<%# PASSWORD %>
+						<div class="l-form--row">
+							<div class="l-form--row-cell c-form--input-wrap">
+								<input type="password" name="password" value="" class="c-form--input jsc-input">
+								<label class="c-form--label">Password</label>
+							</div>
+						</div>
+
+						<%# DISPLAY NAME %>
+						<div class="l-form--row">
 							<div class="l-form--row-cell c-form--input-wrap">
 								<input type="text" name="displayName" value="<%= users.displayName %>" class="c-form--input jsc-input">
 								<label class="c-form--label">Display Name</label>
 							</div>
 						</div>
+
+						<%# E-MAIL %>
 						<div class="l-form--row">
 							<div class="c-form--input-wrap">
 								<input type="email" name="email" value="<%= users.email %>" class="c-form--input jsc-input">
 								<label class="c-form--label">E-mail</label>
 							</div>
 						</div>
+
+						<%# AUTHORITY %>
 						<div class="l-form--row">
 							<div class="l-form--row-title l-form--row-cell">
 								<label class="c-form--label">Authority</label>
@@ -74,18 +113,56 @@
 								</label>
 							</div>
 						</div>
+
+						<%# Favorite %>
 						<div class="l-form--row">
-							<div class="l-form--row-cell c-form--input-wrap">
-								<input type="password" name="password" value="" class="c-form--input jsc-input">
-								<label class="c-form--label">Password</label>
+							<div class="c-form--input-wrap">
+								<textarea type="text" name="favorite" class="c-form--input jsc-input"><%= users.favorite %></textarea>
+								<label class="c-form--label">Favorite</label>
 							</div>
 						</div>
+
+						<%# BIRTH DAY %>
+						<div class="l-form--row">
+							<div class="c-form--input-wrap">
+								<input type="date" name="birthday" value="<%= formatDate(users.birthday, 'YYYY-MM-DD') %>" class="c-form--input jsc-input">
+								<label class="c-form--label">Birth day</label>
+							</div>
+						</div>
+
+						<%# HIRE DATE %>
+						<div class="l-form--row">
+							<div class="c-form--input-wrap">
+								<input type="date" name="hireDate" value="<%= formatDate(users.hireDate, 'YYYY-MM-DD') %>" class="c-form--input jsc-input">
+								<label class="c-form--label">Hire date</label>
+							</div>
+						</div>
+
+						<%# BLOOD TYPE %>
+						<div class="l-form--row">
+							<div class="c-form--input-wrap">
+								<input type="text" name="bloodType" value="<%= users.bloodType %>" class="c-form--input jsc-input">
+								<label class="c-form--label">Blood Type</label>
+							</div>
+						</div>
+
+						<%# TELEPHONE %>
+						<div class="l-form--row">
+							<div class="c-form--input-wrap">
+								<input type="tel" name="tel" value="<%= users.tel %>" minlength="10" maxlength="13" class="c-form--input jsc-input">
+								<label class="c-form--label">Telephone</label>
+							</div>
+						</div>
+
+						<%# SUBMIT%>
 						<div class="l-form--row">
 							<input type="hidden" name="id" value="<%= users.id %>">
 							<div class="l-form--submit-wrap">
 								<input type="submit" value="<%= title %>" class="c-form--submit">
 							</div>
 						</div>
+
+						<%# DELETE%>
 						<div class="c-form--delete-wrap">
 							<% if (title == 'Edit Users') { %>
 							<a href="/users/edit/delete?id=<%= users.id %>" class="c-form--delete jsc-user-delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
