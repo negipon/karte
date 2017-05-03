@@ -1,7 +1,4 @@
 .c-form {
-	&--label {
-		color: #aaa;
-	}
 	&--input {
 		border-bottom: solid 1px #CCC;
 		padding: 25px 10px 5px 5px;
@@ -10,10 +7,17 @@
 		color: #666;
 		+ .c-form--label {
 			position: absolute;
+			color: #aaa;
 			transition: all .2s ease-in-out;
 			margin-left: 5px;
 			top: 20px;
 			pointer-events: none;
+		}
+		&[type="date"] {
+			color: transparent;
+			&:focus {
+				color: #333;
+			}
 		}
 		&:focus,
 		&.is-inputted {

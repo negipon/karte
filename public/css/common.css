@@ -442,11 +442,12 @@ label:hover {
 
 .l-header {
 	position: fixed;
+	z-index: 1;
 	top: 0;
 	left: 0;
 	width: 100%;
 	padding: 20px;
-	background-color: rgba(255, 255, 255, .7);
+	background-color: rgba(255, 255, 255, .9);
 	box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
 }
 
@@ -559,7 +560,9 @@ label:hover {
 
 .c-card--email {
 	font-size: 12px;
+	overflow: hidden;
 	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .c-card--profile-list {
@@ -568,10 +571,6 @@ label:hover {
 
 .c-card--profile-list > li + li {
 	margin-top: 5px;
-}
-
-.c-form--label {
-	color: #aaa;
 }
 
 .c-form--input {
@@ -588,6 +587,15 @@ label:hover {
 	margin-left: 5px;
 	transition: all .2s ease-in-out;
 	pointer-events: none;
+	color: #aaa;
+}
+
+.c-form--input[type='date'] {
+	color: transparent;
+}
+
+.c-form--input[type='date']:focus {
+	color: #333;
 }
 
 .c-form--input:focus,
