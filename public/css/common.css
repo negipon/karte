@@ -473,6 +473,14 @@ label:hover {
 	width: 33.333%;
 }
 
+.l-heading--option {
+	float: right;
+}
+
+.l-heading + * {
+	margin-top: 20px;
+}
+
 .l-main {
 	height: inherit;
 	min-height: inherit;
@@ -480,9 +488,6 @@ label:hover {
 }
 
 .c-button--add {
-	font-size: 20px;
-	float: right;
-	width: 24px;
 	text-align: center;
 }
 
@@ -498,7 +503,7 @@ label:hover {
 .c-card--list > li {
 	display: inline-block;
 	width: 33.333%;
-	margin-top: 10px;
+	margin-top: 15px;
 	padding-left: 10px;
 	vertical-align: top;
 }
@@ -510,6 +515,7 @@ label:hover {
 	padding: 10px;
 	color: #333;
 	background-color: #fff;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, .1);
 }
 
 .c-card--user:visited {
@@ -522,22 +528,49 @@ label:hover {
 
 .c-card--username {
 	font-size: 14px;
-	margin-left: 10px;
+	display: inline-block;
+	margin-left: 5px;
 	color: #999;
 }
 
+.c-card--number {
+	font-size: 12px;
+	position: absolute;
+	top: -5px;
+	left: 5px;
+	padding: 2px 5px;
+	color: #fff;
+	background-color: #aaa;
+}
+
 .c-card--avatar {
-	top: 10px;
-	left: 10px;
 	float: left;
 	overflow: hidden;
 	width: 100px;
 	height: 100px;
 	border-radius: 50%;
+	background-size: cover;
 }
 
 .c-card--avatar + .c-card--title {
 	padding-left: 10px;
+}
+
+.c-card--authority {
+	font-size: 14px;
+}
+
+.c-card--email {
+	font-size: 12px;
+	white-space: nowrap;
+}
+
+.c-card--profile-list {
+	margin-top: 10px;
+}
+
+.c-card--profile-list > li + li {
+	margin-top: 5px;
 }
 
 .c-form--label {
@@ -703,8 +736,18 @@ label:hover {
 	vertical-align: middle;
 }
 
-.c-heading--wrap + * {
-	margin-top: 20px;
+.c-heading--option {
+	font-size: 20px;
+}
+
+.c-heading--option > * {
+	display: inline-block;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+.c-heading--option > * + * {
+	margin-left: 5px;
 }
 
 .c-heading--primary {
@@ -724,10 +767,6 @@ label:hover {
 	content: '';
 	border-radius: 2px;
 	background-color: #ff5252;
-}
-
-.c-heading--primary + * {
-	margin-top: 20px;
 }
 
 .c-main {

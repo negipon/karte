@@ -1,11 +1,13 @@
 <%- include('component/header') -%>
 	<div class="l-main c-main">
 		<div class="container">
-			<div class="c-heading--wrap cf">
+			<div class="l-heading c-heading--wrap cf">
 				<% if (user.authorityId > 3) { %>
-				<a href="/users" title="Return" class="c-button--add">
-					<i class="fa fa-arrow-left" aria-hidden="true"></i>
-				</a>
+				<div class="l-heading--option c-heading--option">
+					<a href="/users" title="Return" class="c-button--add">
+						<i class="fa fa-arrow-left" aria-hidden="true"></i>
+					</a>
+				</div>
 				<% } %>
 				<h2 class="c-heading--primary"><%= title %> Page</h2>
 			</div>

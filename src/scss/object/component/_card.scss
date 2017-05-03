@@ -6,7 +6,7 @@
 			vertical-align: top;
 			width: 33.333%;
 			padding-left: 10px;
-			margin-top: 10px;
+			margin-top: 15px;
 		}
 	}
 	&--user {
@@ -16,6 +16,7 @@
 		color: #333;
 		position: relative;
 		min-height: 120px;
+		box-shadow: 1px 1px 2px rgba(0,0,0,.1);
 		&:visited {
 			color: #333;
 		}
@@ -26,18 +27,44 @@
 	&--username {
 		font-size: 14px;
 		color: #999;
-		margin-left: 10px;
+		margin-left: 5px;
+		display: inline-block;
+	}
+	&--number {
+		position: absolute;
+		left: 5px;
+		top: -5px;
+		background-color: #aaa;
+		color: #fff;
+		font-size: 12px;
+		padding: 2px 5px;
 	}
 	&--avatar {
 		width: 100px;
 		height: 100px;
-		left: 10px;
-		top: 10px;
 		border-radius: 50%;
 		overflow: hidden;
 		float: left;
+		background-size: cover;
 		+ .c-card--title {
 			padding-left: 10px;
+		}
+	}
+	&--authority {
+		font-size: 14px;
+	}
+	&--email {
+		font-size: 12px;
+		white-space: nowrap;
+	}
+	&--profile {
+		&-list {
+			margin-top: 10px;
+			> li {
+				+ li {
+					margin-top: 5px;
+				}
+			}
 		}
 	}
 }

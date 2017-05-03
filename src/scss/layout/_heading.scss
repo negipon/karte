@@ -1,0 +1,8 @@
+.l-heading {
+	&--option {
+		float: right;
+	}
+	+ * {
+		margin-top: 20px;
+	}
+}
