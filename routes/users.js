@@ -80,7 +80,8 @@ router.post('/add', isLogined, function(req, res, next) {
 			birthday: profile.birthday,
 			hireDate: profile.hireDate,
 			bloodType: profile.bloodType,
-			tel: profile.tel
+			tel: profile.tel,
+			tel: profile.gender
 		};
 		if (req.file) {
 			insertProfile.avatarFile = req.file.filename;
@@ -129,7 +130,8 @@ router.post('/edit/', isLogined, function(req, res, next) {
 			birthday: profile.birthday,
 			hireDate: profile.hireDate,
 			bloodType: profile.bloodType,
-			tel: profile.tel
+			tel: profile.tel,
+			tel: profile.gender
 		};
 		if (profile.password) {
 			updateProfile.password = getHash(profile.password);

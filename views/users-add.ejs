@@ -57,7 +57,7 @@
 						<%# NUMBER %>
 						<div class="l-form--row">
 							<div class="l-form--row-cell c-form--input-wrap">
-								<input type="number" name="number" value="<%= users.number %>" pattern="[1-9][0-9]*" class="c-form--input jsc-input">
+								<input type="number" name="number" value="<%= users.number %>" pattern="[1-9][0-9]*" class="c-form--input jsc-input" required>
 								<label class="c-form--label">User Number</label>
 							</div>
 						</div>
@@ -65,7 +65,7 @@
 						<%# USER NAME %>
 						<div class="l-form--row">
 							<div class="l-form--row-cell c-form--input-wrap">
-								<input type="text" name="username" value="<%= users.username %>" class="c-form--input jsc-input">
+								<input type="text" name="username" value="<%= users.username %>" class="c-form--input jsc-input" required>
 								<label class="c-form--label">User Name</label>
 							</div>
 						</div>
@@ -81,7 +81,7 @@
 						<%# DISPLAY NAME %>
 						<div class="l-form--row">
 							<div class="l-form--row-cell c-form--input-wrap">
-								<input type="text" name="displayName" value="<%= users.displayName %>" class="c-form--input jsc-input">
+								<input type="text" name="displayName" value="<%= users.displayName %>" class="c-form--input jsc-input" required>
 								<label class="c-form--label">Display Name</label>
 							</div>
 						</div>
@@ -91,6 +91,24 @@
 							<div class="c-form--input-wrap">
 								<input type="email" name="email" value="<%= users.email %>" class="c-form--input jsc-input">
 								<label class="c-form--label">E-mail</label>
+							</div>
+						</div>
+
+						<%# SEX %>
+						<div class="l-form--row">
+							<div class="l-form--row-title l-form--row-cell">
+								<span class="c-form--label">Sex</span>
+							</div>
+							<div class="l-form--row-cell c-form--input-wrap">
+								<label class="c-form--select-wrap">
+									<select name="gender" class="c-form--select">
+										<% if (users.gender === '2') { %>
+										<option value="1">男性</option><option value="2" selected>女性</option>
+										<% } else { %>
+										<option value="1" selected>男性</option><option value="2">女性</option>
+										<% } %>
+									</select>
+								</label>
 							</div>
 						</div>
 
