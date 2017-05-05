@@ -139,7 +139,7 @@ router.post('/edit/', isLogined, function(req, res, next) {
 		if (req.file) {
 			updateProfile.avatarFile = req.file.filename;
 		}
-		connection.query('UPDATE users SET ? WHERE id = ' + id, updateProfile, function (err, rows) {
+		connection.query('UPDATE users SET ? WHERE number = ' + id, updateProfile, function (err, rows) {
 			if (err) {
 				res.send('Failed');
 			} else {

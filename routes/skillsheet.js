@@ -103,7 +103,7 @@ router.get('/edit/:id', isLogined, function(req, res, next) {
 		connection.query('SELECT * FROM skillsheet WHERE userNumber = ' + id, function (err, skillsheetRows) {
 			connection.query('SELECT * FROM skillCategory', function (err, skillCategoryRows) {
 				connection.query('SELECT * FROM skill', function (err, skillRows) {
-					connection.query('SELECT * FROM skillProgress WHERE userNumber = ' + id, function (err, skillProgressRows) {
+					connection.query('SELECT * FROM progress WHERE userNumber = ' + id, function (err, progressRows) {
 						connection.query('SELECT * FROM history WHERE userNumber = ' + id, function (err, historyRows) {
 							res.render('skillsheet-detail', {
 								title: 'Edit Skill Sheet',
@@ -114,7 +114,7 @@ router.get('/edit/:id', isLogined, function(req, res, next) {
 								history: historyRows,
 								skillCategory: skillCategoryRows,
 								skill: skillRows,
-								skillProgress: skillProgressRows
+								progress: progressRows
 							});
 						});
 					});
@@ -131,13 +131,20 @@ router.post('/edit/', isLogined, function(req, res, next) {
 			return;
 		}
 		var skill = req.body;
-		console.log(skill);
+		var progress;
 		var id = skill.id;
 		var updateSkillSheet = {
 			education: skill.education,
 			qualification: skill.qualification,
 			specialty: skill.specialty
 		};
+		for (key in skill) {
+			if (key.startsWith('progress')) {
+				var skillId = key.replace('progress-', '');
+				progress += '(null,' + ')'
+				console.log(skillId + ':' + skill[key]);
+			}
+		}
 		connection.query('UPDATE skillsheet SET ? WHERE userNumber = ' + id, updateSkillSheet, function (err, rows) {
 			if (err) {
 				res.send('Failed');

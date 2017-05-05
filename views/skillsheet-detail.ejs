@@ -119,14 +119,17 @@
 								<% for (j in skill) { %>
 								<% if (skillCategory[i].categoryId === skill[j].skillCategoryId) { %>
 									<div>
-									<span><%= skill[j].skillName %></span>
-									<% for (k in skillProgress) { %>
-									<% if (skillProgress[k].skillId === skill[j].skillId) { %>
-										<progress value="<%= skillProgress[k].progressValue %>" max="5"><%= skillProgress[k].progressValue %></progress>
-										<input type="number" name="progress-<%= skillProgress[k].skillId %>" value="<%= skillProgress[k].progressValue %>">
+									<span>
+									<%= skill[j].skillName %>
+									<%= skill[j].skillId %>
+									</span>
+									<% for (k in progress) { %>
+									<% if (progress[k].skillId === skill[j].skillId) { %>
+										<progress value="<%= progress[k].progressValue %>" max="5"><%= progress[k].progressValue %></progress>
+										<input type="number" name="progress-<%= progress[k].progressId %>-<%= progress[k].skillId %>" value="<%= progress[k].progressValue %>">
 									<% } %>
 									<% } %>
-									<input type="number" name="progress-<%= skill[j].skillId %>" value="">
+									<input type="number" name="progress-null-<%= skill[j].skillId %>" value="">
 									</div>
 								<% } %>
 								<% } %>
