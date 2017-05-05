@@ -1,0 +1,15 @@
+.c-history {
+	font-size: 14px;
+	&--title {
+		text-align: center;
+		background-color: #ccc;
+	}
+	&--text,
+	&--textarea,
+	&--input {
+		width: 100%;
+		&.text-center {
+			text-align: center;
+		}
+	}
+}

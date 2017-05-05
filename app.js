@@ -13,6 +13,7 @@ var flash = require('connect-flash');
 // ルート設定
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var skillsheet = require('./routes/skillsheet');
 var login = require('./routes/login');
 
 var app = express();
@@ -94,6 +95,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ルーティング設定
 app.use('/', routes);
 app.use('/users', users);
+app.use('/skillsheet', skillsheet);
 app.use('/login', login);
 app.get('/logout', function(req, res) {
 	req.logout();

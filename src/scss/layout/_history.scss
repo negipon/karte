@@ -1,0 +1,13 @@
+.l-history {
+	display: table;
+	&--row {
+		display: table-row;
+	}
+	&--cell {
+		display: table-cell;
+		vertical-align: middle;
+		&.text-center {
+			text-align: center;
+		}
+	}
+}

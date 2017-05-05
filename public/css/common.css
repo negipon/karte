@@ -480,6 +480,23 @@ label:hover {
 	margin-top: 20px;
 }
 
+.l-history {
+	display: table;
+}
+
+.l-history--row {
+	display: table-row;
+}
+
+.l-history--cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.l-history--cell.text-center {
+	text-align: center;
+}
+
 .l-main {
 	min-height: inherit;
 	padding: 100px 20px 20px;
@@ -772,6 +789,27 @@ label:hover {
 	content: '';
 	border-radius: 2px;
 	background-color: #ff5252;
+}
+
+.c-history {
+	font-size: 14px;
+}
+
+.c-history--title {
+	text-align: center;
+	background-color: #ccc;
+}
+
+.c-history--text,
+.c-history--textarea,
+.c-history--input {
+	width: 100%;
+}
+
+.c-history--text.text-center,
+.c-history--textarea.text-center,
+.c-history--input.text-center {
+	text-align: center;
 }
 
 .c-main {

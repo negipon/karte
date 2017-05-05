@@ -37,8 +37,8 @@ router.get('/', isLogined, function(req, res, next) {
 		sort = 'ASC';
 	}
 	connection.query('SELECT * FROM users INNER JOIN authority ON users.authorityId = authority.authorityId ORDER BY number ' + sort, function (err, rows) {
-		res.render('users', {
-			title: 'Users List',
+		res.render('skillsheet', {
+			title: 'Skill Sheet List',
 			page: 'users',
 			user: req.user,
 			users:rows
@@ -50,8 +50,8 @@ router.get('/', isLogined, function(req, res, next) {
 router.get('/add', isLogined, function(req, res, next) {
 	connection.query('SELECT * FROM users', function (err, usersRows) {
 		connection.query('SELECT * FROM authority ORDER BY authorityId ASC', function (err, authorityRows) {
-			res.render('users-add', {
-				title: 'Add Users',
+			res.render('skillsheet-detail', {
+				title: 'Add Skill Sheet',
 				page: 'users',
 				user: req.user,
 				users: usersRows,
@@ -96,17 +96,30 @@ router.post('/add', isLogined, function(req, res, next) {
 	});
 });
 
-/* Add users. */
+/* Edit. */
 router.get('/edit/:id', isLogined, function(req, res, next) {
 	var id = req.params.id;
 	connection.query('SELECT * FROM users WHERE number = ' + id, function (err, usersRows) {
-		connection.query('SELECT * FROM authority ORDER BY authorityId ASC', function (err, authorityRows) {
-			res.render('users-add', {
-				title: 'Edit Users',
-				page: 'users',
-				user: req.user,
-				users: usersRows[0],
-				authority: authorityRows
+		connection.query('SELECT * FROM skillsheet WHERE userNumber = ' + id, function (err, skillsheetRows) {
+			connection.query('SELECT * FROM skillCategory', function (err, skillCategoryRows) {
+				connection.query('SELECT * FROM skill', function (err, skillRows) {
+					connection.query('SELECT * FROM skillProgress WHERE userNumber = ' + id, function (err, skillProgressRows) {
+						connection.query('SELECT * FROM history WHERE userNumber = ' + id, function (err, historyRows) {
+							console.log(skillsheetRows);
+							res.render('skillsheet-detail', {
+								title: 'Edit Skill Sheet',
+								page: 'edit',
+								user: req.user,
+								users: usersRows[0],
+								skillsheet: skillsheetRows[0],
+								history: historyRows,
+								skillCategory: skillCategoryRows,
+								skill: skillRows,
+								skillProgress: skillProgressRows
+							});
+						});
+					});
+				});
 			});
 		});
 	});

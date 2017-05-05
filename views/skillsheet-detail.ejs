@@ -1,0 +1,211 @@
+<%- include('component/header') -%>
+<%
+	var formatDate = function (date, format) {
+		if (date && date !== '0000-00-00') {
+			if (!format) format = 'YYYY-MM-DD';
+			format = format.replace(/YYYY/g, date.getFullYear());
+			format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2));
+			format = format.replace(/DD/g, ('0' + date.getDate()).slice(-2));
+			format = format.replace(/hh/g, ('0' + date.getHours()).slice(-2));
+			format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2));
+			format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2));
+			if (format.match(/S/g)) {
+				var milliSeconds = ('00' + date.getMilliseconds()).slice(-3);
+				var length = format.match(/S/g).length;
+				for (var i = 0; i < length; i++) format = format.replace(/S/, milliSeconds.substring(i, i + 1));
+			}
+			return format;
+		}
+	};
+	var calculateAge = function (birthday) {
+		var birth = birthday.split('-');
+		var today = new Date();
+		if ( parseInt(birth[1], 10) * 100 + parseInt(birth[2], 10) > (today.getMonth() + 1) * 100 + today.getDate() ) {
+			return today.getFullYear() - parseInt(birth[0], 10) - 1;
+		}
+		return today.getFullYear() - parseInt(birth[0], 10);
+	}
+%>
+	<div class="l-main c-main">
+		<div class="container">
+			<div class="l-heading c-heading--wrap cf">
+				<% if (user.authorityId > 3) { %>
+				<div class="l-heading--option c-heading--option">
+					<a href="/skillsheet" title="Return" class="c-button--add">
+						<i class="fa fa-arrow-left" aria-hidden="true"></i>
+					</a>
+				</div>
+				<% } %>
+				<h2 class="c-heading--primary"><%= title %> Page</h2>
+			</div>
+			<% if (page == 'edit') { %>
+			<form action="/skillsheet/edit" method="post" enctype="multipart/form-data">
+			<% } else { %>
+			<form action="/skillsheet/add" method="post" enctype="multipart/form-data">
+			<% } %>
+				<div class="l-form--add l-form--table">
+					<div class="l-form--column">
+						<div class="l-form--row">
+
+							<%# DISPLAY NAME %>
+							<div class="l-form--row-cell">
+								<span class="">氏名</span>
+								<span><%= users.displayName %></span>
+							</div>
+
+							<%# AGE %>
+							<div class="l-form--row-cell">
+								<div class="">
+									<span class="">年齢</span>
+									<span><%= calculateAge(formatDate(users.birthday, 'YYYY-MM-DD')) %> 歳</span>
+								</div>
+							</div>
+
+							<%# SEX %>
+							<div class="l-form--row-cell">
+								<span class="c-form--label">性別</span>
+								<span>
+									<% if (users.gender === '2') { %>
+									女性
+									<% } else { %>
+									男性
+									<% } %>
+								</span>
+							</div>
+
+						</div>
+
+						<div class="l-form--row">
+
+							<%# education %>
+							<div class="l-form--row-cell">
+								<label class="">最終学歴</label>
+								<input type="text" name="education" value="<%= skillsheet.education %>" class="">
+							</div>
+
+							<%# qualification %>
+							<div class="l-form--row-cell">
+								<label class="">資格</label>
+								<input type="text" name="qualification" value="<%= skillsheet.qualification %>" class="">
+							</div>
+
+						</div>
+
+						<div class="l-form--row">
+
+							<%# specialty %>
+							<div class="l-form--row-cell">
+								<label class="">得意分野</label>
+								<textarea type="text" name="specialty" value="" class=""><%= skillsheet.specialty %></textarea>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="l-form--column column1-4 c-form--upload">
+						<% if (users.avatarFile) { %>
+						<img src="/uploads/avatar/<%= users.avatarFile %>">
+						<% } else { %>
+						<img src="//placehold.jp/250x250.png">
+						<% } %>
+					</div>
+				</div>
+				<div class="l-form--add l-form--table">
+
+					<% for (i in skillCategory) { %>
+						<div class="l-form--row">
+							<div class="l-form--row-cell">
+								<label class=""><%= skillCategory[i].categoryName %></label>
+								<% for (j in skill) { %>
+								<% if (skillCategory[i].categoryId === skill[j].skillCategoryId) { %>
+									<div>
+									<span><%= skill[j].skillName %></span>
+									<% for (k in skillProgress) { %>
+									<% if (skillProgress[k].skillId === skill[j].skillId) { %>
+										<progress value="<%= skillProgress[k].progressValue %>" max="5"><%= skillProgress[k].progressValue %></progress>
+										<input type="number" name="progress<%= skillProgress[k].skillId %>" value="<%= skillProgress[k].progressValue %>">
+									<% } %>
+									<% } %>
+									<input type="number" name="progress<%= skill[j].skillId %>" value="">
+									</div>
+								<% } %>
+								<% } %>
+							</div>
+						</div>
+					<% } %>
+
+					<div class="l-form--row">
+						<div class="l-history c-history">
+							<div class="l-history--row">
+								<span class="l-history--cell c-history--title">開始終了年月<br>期間</span>
+								<span class="l-history--cell c-history--title">企業名及びプロジェクト名<br>業務内容</span>
+								<span class="l-history--cell c-history--title">使用OS</span>
+								<span class="l-history--cell c-history--title">使用言語/<br>スクリプト</span>
+								<span class="l-history--cell c-history--title">使用ツール</span>
+								<span class="l-history--cell c-history--title">担当範囲</span>
+								<span class="l-history--cell c-history--title">チーム</span>
+							</div>
+							<% for (i in history) { %>
+							<div class="l-history--row">
+
+								<%# start - end %>
+								<div class="l-history--cell text-center">
+									<input type="date" name="start" value="<%= formatDate(history[i].start, 'YYYY-MM-DD') %>" class="c-history--input text-center">
+									<span class="c-history--text">〜</span>
+									<input type="date" name="end" value="<%= formatDate(history[i].end, 'YYYY-MM-DD') %>" class="c-history--input text-center">
+								</div>
+
+								<%# project %>
+								<div class="l-history--cell">
+									<textarea name="project" class="c-history--textarea"><%= history[i].project %></textarea>
+								</div>
+
+								<%# os %>
+								<div class="l-history--cell">
+									<textarea name="os" class="c-history--textarea text-center"><%= history[i].os %></textarea>
+								</div>
+
+								<%# language %>
+								<div class="l-history--cell">
+									<textarea name="language" class="c-history--textarea text-center"><%= history[i].language %></textarea>
+								</div>
+
+								<%# tool %>
+								<div class="l-history--cell">
+									<textarea name="tool" class="c-history--textarea text-center"><%= history[i].tool %></textarea>
+								</div>
+
+								<%# lenge %>
+								<div class="l-history--cell">
+									<textarea name="lenge" class="c-history--textarea text-center"><%= history[i].lenge %></textarea>
+								</div>
+
+								<%# team %>
+								<div class="l-history--cell">
+									<input name="team" value="<%= history[i].team %>" class="c-history--input text-center">
+								</div>
+
+							</div>
+							<% } %>
+						</div>
+					</div>
+
+					<%# SUBMIT%>
+					<div class="l-form--row">
+						<input type="hidden" name="id" value="<%= users.id %>">
+						<div class="l-form--submit-wrap">
+							<input type="submit" value="<%= title %>" class="">
+						</div>
+					</div>
+
+					<%# DELETE%>
+					<div class="">
+						<% if (page === 'edit') { %>
+						<a href="/skillsheet/edit/delete?id=<%= users.id %>" class="c-form--delete jsc-user-delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+						<% } %>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+<%- include('component/footer') -%>
