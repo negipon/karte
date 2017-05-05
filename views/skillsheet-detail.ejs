@@ -39,9 +39,9 @@
 				<h2 class="c-heading--primary"><%= title %> Page</h2>
 			</div>
 			<% if (page == 'edit') { %>
-			<form action="/skillsheet/edit" method="post" enctype="multipart/form-data">
+			<form action="/skillsheet/edit" method="post">
 			<% } else { %>
-			<form action="/skillsheet/add" method="post" enctype="multipart/form-data">
+			<form action="/skillsheet/add" method="post">
 			<% } %>
 				<div class="l-form--add l-form--table">
 					<div class="l-form--column">
@@ -123,10 +123,10 @@
 									<% for (k in skillProgress) { %>
 									<% if (skillProgress[k].skillId === skill[j].skillId) { %>
 										<progress value="<%= skillProgress[k].progressValue %>" max="5"><%= skillProgress[k].progressValue %></progress>
-										<input type="number" name="progress<%= skillProgress[k].skillId %>" value="<%= skillProgress[k].progressValue %>">
+										<input type="number" name="progress-<%= skillProgress[k].skillId %>" value="<%= skillProgress[k].progressValue %>">
 									<% } %>
 									<% } %>
-									<input type="number" name="progress<%= skill[j].skillId %>" value="">
+									<input type="number" name="progress-<%= skill[j].skillId %>" value="">
 									</div>
 								<% } %>
 								<% } %>
@@ -150,39 +150,39 @@
 
 								<%# start - end %>
 								<div class="l-history--cell text-center">
-									<input type="date" name="start" value="<%= formatDate(history[i].start, 'YYYY-MM-DD') %>" class="c-history--input text-center">
+									<input type="date" name="history-<%= history[i].historyId %>-start" value="<%= formatDate(history[i].start, 'YYYY-MM-DD') %>" class="c-history--input text-center">
 									<span class="c-history--text">〜</span>
-									<input type="date" name="end" value="<%= formatDate(history[i].end, 'YYYY-MM-DD') %>" class="c-history--input text-center">
+									<input type="date" name="history-<%= history[i].historyId %>-end" value="<%= formatDate(history[i].end, 'YYYY-MM-DD') %>" class="c-history--input text-center">
 								</div>
 
 								<%# project %>
 								<div class="l-history--cell">
-									<textarea name="project" class="c-history--textarea"><%= history[i].project %></textarea>
+									<textarea name="history-<%= history[i].historyId %>-project" class="c-history--textarea"><%= history[i].project %></textarea>
 								</div>
 
 								<%# os %>
 								<div class="l-history--cell">
-									<textarea name="os" class="c-history--textarea text-center"><%= history[i].os %></textarea>
+									<textarea name="history-<%= history[i].historyId %>-os" class="c-history--textarea text-center"><%= history[i].os %></textarea>
 								</div>
 
 								<%# language %>
 								<div class="l-history--cell">
-									<textarea name="language" class="c-history--textarea text-center"><%= history[i].language %></textarea>
+									<textarea name="history-<%= history[i].historyId %>-language" class="c-history--textarea text-center"><%= history[i].language %></textarea>
 								</div>
 
 								<%# tool %>
 								<div class="l-history--cell">
-									<textarea name="tool" class="c-history--textarea text-center"><%= history[i].tool %></textarea>
+									<textarea name="history-<%= history[i].historyId %>-tool" class="c-history--textarea text-center"><%= history[i].tool %></textarea>
 								</div>
 
 								<%# lenge %>
 								<div class="l-history--cell">
-									<textarea name="lenge" class="c-history--textarea text-center"><%= history[i].lenge %></textarea>
+									<textarea name="history-<%= history[i].historyId %>-lenge" class="c-history--textarea text-center"><%= history[i].lenge %></textarea>
 								</div>
 
 								<%# team %>
 								<div class="l-history--cell">
-									<input name="team" value="<%= history[i].team %>" class="c-history--input text-center">
+									<input name="history-<%= history[i].historyId %>-team" value="<%= history[i].team %>" class="c-history--input text-center">
 								</div>
 
 							</div>
@@ -192,7 +192,7 @@
 
 					<%# SUBMIT%>
 					<div class="l-form--row">
-						<input type="hidden" name="id" value="<%= users.id %>">
+						<input type="hidden" name="id" value="<%= users.number %>">
 						<div class="l-form--submit-wrap">
 							<input type="submit" value="<%= title %>" class="">
 						</div>

@@ -105,7 +105,6 @@ router.get('/edit/:id', isLogined, function(req, res, next) {
 				connection.query('SELECT * FROM skill', function (err, skillRows) {
 					connection.query('SELECT * FROM skillProgress WHERE userNumber = ' + id, function (err, skillProgressRows) {
 						connection.query('SELECT * FROM history WHERE userNumber = ' + id, function (err, historyRows) {
-							console.log(skillsheetRows);
 							res.render('skillsheet-detail', {
 								title: 'Edit Skill Sheet',
 								page: 'edit',
@@ -131,32 +130,19 @@ router.post('/edit/', isLogined, function(req, res, next) {
 			console.log('Error Occured');
 			return;
 		}
-		var profile = req.body;
-		var id = profile.id;
-		var updateProfile = {
-			number: profile.number,
-			authorityId: profile.authority,
-			username: profile.username,
-			displayName: profile.displayName,
-			email: profile.email,
-			favorite: profile.favorite,
-			birthday: profile.birthday,
-			hireDate: profile.hireDate,
-			bloodType: profile.bloodType,
-			tel: profile.tel,
-			gender: profile.gender
+		var skill = req.body;
+		console.log(skill);
+		var id = skill.id;
+		var updateSkillSheet = {
+			education: skill.education,
+			qualification: skill.qualification,
+			specialty: skill.specialty
 		};
-		if (profile.password) {
-			updateProfile.password = getHash(profile.password);
-		}
-		if (req.file) {
-			updateProfile.avatarFile = req.file.filename;
-		}
-		connection.query('UPDATE users SET ? WHERE id = ' + id, updateProfile, function (err, rows) {
+		connection.query('UPDATE skillsheet SET ? WHERE userNumber = ' + id, updateSkillSheet, function (err, rows) {
 			if (err) {
 				res.send('Failed');
 			} else {
-				res.redirect('/users/edit/' + id);
+				res.redirect('/skillsheet/edit/' + id);
 			}
 
 		});
