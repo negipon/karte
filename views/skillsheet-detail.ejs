@@ -43,7 +43,7 @@
 				<% } %>
 				<h2 class="c-heading--primary"><%= title %> Page</h2>
 			</div>
-			<% if (page == 'edit') { %>
+			<% if (page == 'skill-edit') { %>
 			<form action="/skillsheet/edit" method="post">
 			<% } else { %>
 			<form action="/skillsheet/add" method="post">
@@ -162,10 +162,12 @@
 								<span class="l-history--cell c-history--title">チーム</span>
 							</div>
 							<% for (i in history) { %>
-							<div class="l-history--row">
+							<div class="l-history--row jsc-history-row" data-history-id='<%= history[i].historyId %>'>
 
 								<%# History Number %>
-								<div class="l-history--cell c-history--number text-center"></div>
+								<div class="l-history--cell c-history--number text-center">
+									<a href="/skillsheet/history/delete?id=<%= history[i].historyId %>" class="jsc-history-delete"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+								</div>
 
 								<%# start - end %>
 								<div class="l-history--cell text-center">
@@ -206,7 +208,7 @@
 
 							</div>
 							<% } %>
-							<div class="l-history--row">
+							<div class="l-history--row jsc-history-null">
 								<div class="l-history--cell text-center"></div>
 								<div class="l-history--cell text-center">
 									<input type="date" name="history-null-start" value="" class="c-history--input text-center">
@@ -239,6 +241,7 @@
 					<%# SUBMIT%>
 					<div class="l-form--row">
 						<input type="hidden" name="id" value="<%= users.number %>">
+						<input type="hidden" name="historyNullFlag" id="jsi-history-null-flag" value="0">
 						<div class="l-form--submit-wrap">
 							<input type="submit" value="<%= title %>" class="">
 						</div>
@@ -246,7 +249,7 @@
 
 					<%# DELETE%>
 					<div class="">
-						<% if (page === 'edit') { %>
+						<% if (page === 'skill-edit') { %>
 						<a href="/skillsheet/edit/delete?id=<%= users.id %>" class="c-form--delete jsc-user-delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 						<% } %>
 					</div>

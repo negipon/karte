@@ -107,7 +107,7 @@ router.get('/edit/:id', isLogined, function(req, res, next) {
 						connection.query('SELECT * FROM history WHERE userNumber = ' + id, function (err, historyRows) {
 							res.render('skillsheet-detail', {
 								title: 'Edit Skill Sheet',
-								page: 'edit',
+								page: 'skill-edit',
 								user: req.user,
 								users: usersRows[0],
 								skillsheet: skillsheetRows[0],
@@ -133,11 +133,12 @@ router.post('/edit/', isLogined, function(req, res, next) {
 		var skill = req.body;
 		var progress = '';
 		var history = '';
+		var historyNull = '';
 		var historyId = '';
 		var historyUpdate = '';
 		var historyColumn = '(`historyId`,`userNumber`';
-		var historyArray = [];
 		var id = skill.id;
+		var historyNullFlag = skill.historyNullFlag;
 		var updateSkillSheet = {
 			education: skill.education,
 			qualification: skill.qualification,
@@ -148,6 +149,21 @@ router.post('/edit/', isLogined, function(req, res, next) {
 			if (key.startsWith('progress-')) {
 				var progressCode = key.replace('progress-', '').split('-');
 				progress += "('" + progressCode[0] + "','" + id + "','" + progressCode[1] + "','" + skill[key] + "'),";
+			} else if (key.startsWith('history-null')) {
+				var historyCode = key.replace('history-', '').split('-');
+
+				if (historyColumn.indexOf(historyCode[1]) === -1) {
+					historyColumn += ',`' + historyCode[1] + '`';
+					historyUpdate += historyCode[1] + ' = VALUES(`' + historyCode[1] + '`),';
+				}
+
+				if (historyNullFlag > 0 && historyId !== historyCode[0]) {
+					historyId = historyCode[0];
+					history += "),('" + historyCode[0] + "','" + id + "','" + skill[key] + "'";
+				} else if (historyNullFlag > 0) {
+					history += ",'" + skill[key] + "'";
+				}
+
 			} else if (key.startsWith('history-')) {
 				var historyCode = key.replace('history-', '').split('-');
 				if (!historyId) {
@@ -160,15 +176,10 @@ router.post('/edit/', isLogined, function(req, res, next) {
 				} else {
 					history += ",'" + skill[key] + "'";
 				}
-				if (historyColumn.indexOf(historyCode[1]) === -1) {
-					historyColumn += ',`' + historyCode[1] + '`';
-					historyUpdate += historyCode[1] + ' = VALUES(`' + historyCode[1] + '`),';
-				}
 			}
 		}
 		history += ')';
 		historyColumn += ')';
-		console.log('INSERT INTO `history` ' + historyColumn + ' VALUES ' + history + ' ON DUPLICATE KEY UPDATE ' + historyUpdate.substr(0,historyUpdate.length-1));
 		connection.query('UPDATE skillsheet SET ? WHERE userNumber = ' + id, updateSkillSheet, function (err, rows) {
 
 			if (err) { res.send('Failed skillsheet'); }
@@ -199,6 +210,14 @@ router.post('/edit/delete', function(req, res, next) {
 			res.redirect('/users/');
 		}
 
+	});
+});
+router.post('/history/delete', function(req, res, next) {
+	var id = req.query.id;
+	connection.query('DELETE FROM history WHERE historyId = ' + id, function (err, rows) {
+		if (err) {
+			res.send('Failed');
+		}
 	});
 });
 
