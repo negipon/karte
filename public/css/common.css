@@ -526,19 +526,50 @@ label:hover {
 
 .l-history {
 	display: table;
+	border-collapse: collapse;
 }
 
 .l-history--row {
 	display: table-row;
+	border-bottom: solid 1px #ddd;
+}
+
+.l-history--row:nth-child(odd) {
+	background-color: #fff;
 }
 
 .l-history--cell {
 	display: table-cell;
+	padding: 2px 5px;
 	vertical-align: middle;
 }
 
 .l-history--cell.text-center {
 	text-align: center;
+}
+
+.l-history--cell.w5p {
+	width: 5%;
+}
+
+.l-history--cell.w10p {
+	width: 10%;
+}
+
+.l-history--cell.w15p {
+	width: 15%;
+}
+
+.l-history--cell.w20p {
+	width: 20%;
+}
+
+.l-history--cell.w30p {
+	width: 30%;
+}
+
+.l-history--cell.w40p {
+	width: 40%;
 }
 
 .l-main {
@@ -645,8 +676,10 @@ label:hover {
 .c-form--input + .c-form--label {
 	position: absolute;
 	top: 20px;
+	left: 0;
 	margin-left: 5px;
 	transition: all .2s ease-in-out;
+	white-space: nowrap;
 	pointer-events: none;
 	color: #aaa;
 }
@@ -765,6 +798,19 @@ label:hover {
 	color: red;
 }
 
+.c-form--key {
+	display: inline-block;
+	padding: 2px 5px;
+	vertical-align: top;
+	background-color: #e8e1e1;
+}
+
+.c-form--value {
+	display: inline-block;
+	padding: 2px 5px;
+	vertical-align: top;
+}
+
 .c-header {
 	display: table;
 	width: 100%;
@@ -842,18 +888,16 @@ label:hover {
 
 .c-history--title {
 	text-align: center;
-	background-color: #ccc;
+	background-color: #e8e1e1;
+}
+
+.c-history--title + .c-history--title {
+	border-left: solid 1px #eee;
 }
 
 .c-history--number:before {
 	content: counter(history-number);
 	counter-increment: history-number;
-}
-
-.c-history--text,
-.c-history--textarea,
-.c-history--input {
-	width: 100%;
 }
 
 .c-history--text.text-center,
@@ -862,12 +906,57 @@ label:hover {
 	text-align: center;
 }
 
+.c-history--text,
+.c-history--textarea {
+	width: 100%;
+}
+
+.c-history--input {
+	width: 80%;
+}
+
 .c-history--update {
 	font-size: 12px;
 }
 
+.c-history--update > input {
+	text-align: right;
+}
+
 .c-main {
 	background-color: #f9f9f9;
+}
+
+.c-skill--name {
+	display: inline-block;
+	width: 40%;
+}
+
+.c-skill--progress {
+	width: 45%;
+	vertical-align: middle;
+}
+
+.c-skill--progress-wrap {
+	float: left;
+	width: 50%;
+	margin-top: 2px;
+}
+
+.c-skill--category {
+	font-weight: bold;
+	padding: 2px 5px;
+	background-color: #e8e1e1;
+}
+
+.c-skill--option-wrap {
+	padding: 10px;
+}
+
+.c-skill--option-wrap input {
+	width: 10%;
+	text-align: right;
+	border-bottom: solid 1px #aaa;
 }
 
 .c-slide--trigger {

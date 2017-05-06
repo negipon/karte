@@ -1,0 +1,30 @@
+.c-skill {
+	&--name {
+		display: inline-block;
+		width: 40%;
+	}
+	&--progress {
+		vertical-align: middle;
+		width: 45%;
+		&-wrap {
+			float: left;
+			width: 50%;
+			margin-top: 2px;
+		}
+	}
+	&--category {
+		background-color: $bg-primary-color;
+		font-weight: bold;
+		padding: 2px 5px;
+	}
+	&--option {
+		&-wrap {
+			padding: 10px;
+			input {
+				width: 10%;
+				text-align: right;
+				border-bottom: solid 1px #aaa;
+			}
+		}
+	}
+}

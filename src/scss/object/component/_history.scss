@@ -3,7 +3,10 @@
 	counter-reset: history-number;
 	&--title {
 		text-align: center;
-		background-color: #ccc;
+		background-color: $bg-primary-color;
+		+ .c-history--title {
+			border-left: solid 1px #eee;
+		}
 	}
 	&--number:before {
 		counter-increment: history-number;
@@ -12,12 +15,21 @@
 	&--text,
 	&--textarea,
 	&--input {
-		width: 100%;
 		&.text-center {
 			text-align: center;
 		}
 	}
+	&--text,
+	&--textarea {
+		width: 100%;
+	}
+	&--input {
+		width: 80%;
+	}
 	&--update {
 		font-size: 12px;
+		> input {
+			text-align: right;
+		}
 	}
 }

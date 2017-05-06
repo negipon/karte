@@ -54,22 +54,22 @@
 
 							<%# DISPLAY NAME %>
 							<div class="l-form--row-cell">
-								<span class="">氏名</span>
-								<span><%= users.displayName %></span>
+								<span class="c-form--key">氏名</span><!--
+								--><span class="c-form--value"><%= users.displayName %></span>
 							</div>
 
 							<%# AGE %>
 							<div class="l-form--row-cell">
 								<div class="">
-									<span class="">年齢</span>
-									<span><%= calculateAge(formatDate(users.birthday, 'YYYY-MM-DD')) %> 歳</span>
+									<span class="c-form--key">年齢</span><!--
+									--><span class="c-form--value"><%= calculateAge(formatDate(users.birthday, 'YYYY-MM-DD')) %> 歳</span>
 								</div>
 							</div>
 
 							<%# SEX %>
 							<div class="l-form--row-cell">
-								<span class="c-form--label">性別</span>
-								<span>
+								<span class="c-form--key">性別</span><!--
+								--><span class="c-form--value">
 									<% if (users.gender === '2') { %>
 									女性
 									<% } else { %>
@@ -84,14 +84,14 @@
 
 							<%# education %>
 							<div class="l-form--row-cell">
-								<label class="">最終学歴</label>
-								<input type="text" name="education" value="<%= skillsheet.education %>" class="">
+								<span class="c-form--key">最終学歴</span><!--
+								--><input type="text" name="education" value="<%= skillsheet.education %>" class="c-form--value">
 							</div>
 
 							<%# qualification %>
 							<div class="l-form--row-cell">
-								<label class="">資格</label>
-								<input type="text" name="qualification" value="<%= skillsheet.qualification %>" class="">
+								<span class="c-form--key" class="">資格</span><!--
+								--><input type="text" name="qualification" value="<%= skillsheet.qualification %>"  class="c-form--value">
 							</div>
 
 						</div>
@@ -100,8 +100,8 @@
 
 							<%# specialty %>
 							<div class="l-form--row-cell">
-								<label class="">得意分野</label>
-								<textarea type="text" name="specialty" value="" class=""><%= skillsheet.specialty %></textarea>
+								<span class="c-form--key" class="">得意分野</span><!--
+								--><textarea type="text" name="specialty" class="c-form--value"><%= skillsheet.specialty %></textarea>
 							</div>
 
 						</div>
@@ -120,31 +120,33 @@
 					<% for (i in skillCategory) { %>
 						<div class="l-form--row">
 							<div class="l-form--row-cell">
-								<label class=""><%= skillCategory[i].categoryName %></label>
-								<% for (j in skill) { %>
-								<% if (skillCategory[i].categoryId === skill[j].skillCategoryId) { %>
-									<div>
-									<span>
-									<%= skill[j].skillName %>
-									</span>
-									<% for (k in progress) { %>
-									<% if (progress[k].skillId === skill[j].skillId && progress[k].progressValue > 0) { %>
-										<progress value="<%= progress[k].progressValue %>" max="5"><%= progress[k].progressValue %></progress>
-										<input type="number" name="progress-<%= progress[k].progressId %>-<%= progress[k].skillId %>" value="<%= progress[k].progressValue %>">
-										<% flag = true; %>
-									<% } else if (progress[k].skillId === skill[j].skillId) { %>
-										<input type="number" name="progress-<%= progress[k].progressId %>-<%= progress[k].skillId %>" value="">
-										<% flag = true; %>
-									<% } else { %>
+								<div class="c-skill--category"><%= skillCategory[i].categoryName %></div>
+								<div class="c-skill--option-wrap cf">
+									<% for (j in skill) { %>
+									<% if (skillCategory[i].categoryId === skill[j].skillCategoryId) { %>
+										<div class="c-skill--progress-wrap">
+										<span class="c-skill--name">
+										<%= skill[j].skillName %>
+										</span><!--
+										<% for (k in progress) { %>
+										<% if (progress[k].skillId === skill[j].skillId && progress[k].progressValue > 0) { %>
+											--><progress value="<%= progress[k].progressValue %>" max="5" class="c-skill--progress"><%= progress[k].progressValue %></progress><!--
+											--><input type="number" name="progress-<%= progress[k].progressId %>-<%= progress[k].skillId %>" value="<%= progress[k].progressValue %>" class="c-form--input-progress">
+											<% flag = true; %>
+										<% } else if (progress[k].skillId === skill[j].skillId) { %>
+											--><input type="number" name="progress-<%= progress[k].progressId %>-<%= progress[k].skillId %>" value="" class="c-form--input-progress">
+											<% flag = true; %>
+										<% } else { %>
+										<% } %>
+										<% } %>
+										<% if (flag === false) { %>
+											--><input type="number" name="progress-null-<%= skill[j].skillId %>" value="" class="c-form--input-progress">
+										<% } %>
+										<% flag = false; %>
+										</div>
 									<% } %>
 									<% } %>
-									<% if (flag === false) { %>
-										<input type="number" name="progress-null-<%= skill[j].skillId %>" value="">
-									<% } %>
-									<% flag = false; %>
-									</div>
-								<% } %>
-								<% } %>
+								</div>
 							</div>
 						</div>
 					<% } %>
@@ -159,7 +161,7 @@
 								<span class="l-history--cell c-history--title">使用言語/<br>スクリプト</span>
 								<span class="l-history--cell c-history--title">使用ツール</span>
 								<span class="l-history--cell c-history--title">担当範囲</span>
-								<span class="l-history--cell c-history--title">チーム</span>
+								<span class="l-history--cell w10p c-history--title">チーム</span>
 							</div>
 							<% for (i in history) { %>
 							<div class="l-history--row jsc-history-row" data-history-id='<%= history[i].historyId %>'>

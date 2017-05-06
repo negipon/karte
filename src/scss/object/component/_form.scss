@@ -12,6 +12,8 @@
 			margin-left: 5px;
 			top: 20px;
 			pointer-events: none;
+			white-space: nowrap;
+			left: 0;
 		}
 		&[type="date"] {
 			color: transparent;
@@ -107,5 +109,16 @@
 	&--error {
 		text-align: center;
 		color: red;
+	}
+	&--key {
+		background-color: $bg-primary-color;
+		display: inline-block;
+		vertical-align: top;
+		padding: 2px 5px;
+	}
+	&--value {
+		display: inline-block;
+		vertical-align: top;
+		padding: 2px 5px;
 	}
 }
