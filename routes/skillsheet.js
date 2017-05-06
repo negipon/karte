@@ -132,6 +132,11 @@ router.post('/edit/', isLogined, function(req, res, next) {
 		}
 		var skill = req.body;
 		var progress = '';
+		var history = '';
+		var historyId = '';
+		var historyUpdate = '';
+		var historyColumn = '(`historyId`,`userNumber`';
+		var historyArray = [];
 		var id = skill.id;
 		var updateSkillSheet = {
 			education: skill.education,
@@ -140,20 +145,46 @@ router.post('/edit/', isLogined, function(req, res, next) {
 			updateDate: new Date()
 		};
 		for (key in skill) {
-			if (key.startsWith('progress')) {
+			if (key.startsWith('progress-')) {
 				var progressCode = key.replace('progress-', '').split('-');
-				progress += "('" + progressCode[0] + "','" + id + "','" + progressCode[1] + "','" + skill[key] +"'),"
+				progress += "('" + progressCode[0] + "','" + id + "','" + progressCode[1] + "','" + skill[key] + "'),";
+			} else if (key.startsWith('history-')) {
+				var historyCode = key.replace('history-', '').split('-');
+				if (!historyId) {
+					historyId = historyCode[0];
+					history = "('" + historyCode[0] + "','" + id + "','" + skill[key] + "'";
+					historyColumn += ',`' + historyCode[1] + '`';
+				} else if (historyId !== historyCode[0]) {
+					historyId = historyCode[0];
+					history += "),('" + historyCode[0] + "','" + id + "','" + skill[key] + "'";
+				} else {
+					history += ",'" + skill[key] + "'";
+				}
+				if (historyColumn.indexOf(historyCode[1]) === -1) {
+					historyColumn += ',`' + historyCode[1] + '`';
+					historyUpdate += historyCode[1] + ' = VALUES(`' + historyCode[1] + '`),';
+				}
 			}
 		}
+		history += ')';
+		historyColumn += ')';
+		console.log('INSERT INTO `history` ' + historyColumn + ' VALUES ' + history + ' ON DUPLICATE KEY UPDATE ' + historyUpdate.substr(0,historyUpdate.length-1));
 		connection.query('UPDATE skillsheet SET ? WHERE userNumber = ' + id, updateSkillSheet, function (err, rows) {
+
+			if (err) { res.send('Failed skillsheet'); }
 
 			connection.query('INSERT INTO `progress` (`progressId`, `userNumber`, `skillId`, `progressValue`) VALUES ' + progress.substr(0,progress.length-1) + ' ON DUPLICATE KEY UPDATE progressValue = VALUES(`progressValue`)', function (err, rows) {
 
-				if (err) {
-					res.send('Failed');
-				} else {
-					res.redirect('/skillsheet/edit/' + id);
-				}
+				if (err) { res.send('Failed progress'); }
+
+				connection.query('INSERT INTO `history` ' + historyColumn + ' VALUES ' + history + ' ON DUPLICATE KEY UPDATE ' + historyUpdate.substr(0,historyUpdate.length-1), function (err, rows) {
+
+					if (err) { res.send('Failed history'); }
+					else {
+						res.redirect('/skillsheet/edit/' + id);
+					}
+
+				});
 
 			});
 		});
@@ -161,7 +192,7 @@ router.post('/edit/', isLogined, function(req, res, next) {
 });
 router.post('/edit/delete', function(req, res, next) {
 	var id = req.query.id;
-	connection.query('DELETE FROM users WHERE id = ' + id, function (err, rows) {
+	connection.query('DELETE FROM users WHERE number = ' + id, function (err, rows) {
 		if (err) {
 			res.send('Failed');
 		} else {

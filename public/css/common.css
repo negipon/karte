@@ -175,6 +175,50 @@ button,
 	-webkit-appearance: none; /* Safari 8 */
 }
 
+/* スピンボタン（上下ボタン）を非表示 */
+
+[type=date]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+
+/* 無入力時の 年/月/日 を / / にする */
+
+[type=date]::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+[type=date]::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+[type=date]::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+	color: transparent;
+}
+
+/* /の色を変える */
+
+[type=date]::-webkit-datetime-edit-text {
+	color: #666;
+}
+
+/* clearボタンの非表示 */
+
+[type=date]::-webkit-clear-button {
+	-webkit-appearance: none;
+}
+
+/* カレンダーのインジケータ（▼）を非表示 */
+
+[type=date]::-webkit-calendar-picker-indicator {
+	position: relative;
+	color: transparent;
+}
+
+/* fontAwesomeのカレンダーアイコンをインジケータにする */
+
+[type=date]::-webkit-calendar-picker-indicator:before {
+	font-family: FontAwesome; /* fa-calendar-o */
+	position: absolute; /* ここら辺はいい感じの塩梅で */
+	top: -5px;
+	left: -5px; /*content: "\f073";*/ /* fa-calendar */
+	content: '\f133';
+	color: #666; /* ここも */
+}
+
 textarea {
 	overflow: auto; /* Internet Explorer 11+ */
 	resize: vertical; /* Specify textarea resizability */
