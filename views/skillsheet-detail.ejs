@@ -24,13 +24,18 @@
 			return today.getFullYear() - parseInt(birth[0], 10) - 1;
 		}
 		return today.getFullYear() - parseInt(birth[0], 10);
-	}
+	};
+	var flag = false;
 %>
 	<div class="l-main c-main">
 		<div class="container">
 			<div class="l-heading c-heading--wrap cf">
 				<% if (user.authorityId > 3) { %>
 				<div class="l-heading--option c-heading--option">
+					<span class="c-history--update">
+						更新日
+						<input type="date" value="<%= formatDate(skillsheet.updateDate, 'YYYY-MM-DD') %>" name="updateDate" readonly>
+					</span>
 					<a href="/skillsheet" title="Return" class="c-button--add">
 						<i class="fa fa-arrow-left" aria-hidden="true"></i>
 					</a>
@@ -121,15 +126,22 @@
 									<div>
 									<span>
 									<%= skill[j].skillName %>
-									<%= skill[j].skillId %>
 									</span>
 									<% for (k in progress) { %>
-									<% if (progress[k].skillId === skill[j].skillId) { %>
+									<% if (progress[k].skillId === skill[j].skillId && progress[k].progressValue > 0) { %>
 										<progress value="<%= progress[k].progressValue %>" max="5"><%= progress[k].progressValue %></progress>
 										<input type="number" name="progress-<%= progress[k].progressId %>-<%= progress[k].skillId %>" value="<%= progress[k].progressValue %>">
+										<% flag = true; %>
+									<% } else if (progress[k].skillId === skill[j].skillId) { %>
+										<input type="number" name="progress-<%= progress[k].progressId %>-<%= progress[k].skillId %>" value="">
+										<% flag = true; %>
+									<% } else { %>
 									<% } %>
 									<% } %>
-									<input type="number" name="progress-null-<%= skill[j].skillId %>" value="">
+									<% if (flag === false) { %>
+										<input type="number" name="progress-null-<%= skill[j].skillId %>" value="">
+									<% } %>
+									<% flag = false; %>
 									</div>
 								<% } %>
 								<% } %>
@@ -140,6 +152,7 @@
 					<div class="l-form--row">
 						<div class="l-history c-history">
 							<div class="l-history--row">
+								<span class="l-history--cell c-history--title">No.</span>
 								<span class="l-history--cell c-history--title">開始終了年月<br>期間</span>
 								<span class="l-history--cell c-history--title">企業名及びプロジェクト名<br>業務内容</span>
 								<span class="l-history--cell c-history--title">使用OS</span>
@@ -150,6 +163,9 @@
 							</div>
 							<% for (i in history) { %>
 							<div class="l-history--row">
+
+								<%# History Number %>
+								<div class="l-history--cell c-history--number text-center"></div>
 
 								<%# start - end %>
 								<div class="l-history--cell text-center">
@@ -190,6 +206,33 @@
 
 							</div>
 							<% } %>
+							<div class="l-history--row">
+								<div class="l-history--cell text-center"></div>
+								<div class="l-history--cell text-center">
+									<input type="date" name="history-null-start" value="" class="c-history--input text-center">
+									<span class="c-history--text">〜</span>
+									<input type="date" name="history-null-end" value="" class="c-history--input text-center">
+								</div>
+								<div class="l-history--cell">
+									<textarea name="history-null-project" class="c-history--textarea"></textarea>
+								</div>
+								<div class="l-history--cell">
+									<textarea name="history-null-os" class="c-history--textarea text-center"></textarea>
+								</div>
+								<div class="l-history--cell">
+									<textarea name="history-null-language" class="c-history--textarea text-center"></textarea>
+								</div>
+								<div class="l-history--cell">
+									<textarea name="history-null-tool" class="c-history--textarea text-center"></textarea>
+								</div>
+								<div class="l-history--cell">
+									<textarea name="history-null-lenge" class="c-history--textarea text-center"></textarea>
+								</div>
+								<div class="l-history--cell">
+									<input name="history-null-team" value="" class="c-history--input text-center">
+								</div>
+
+							</div>
 						</div>
 					</div>
 

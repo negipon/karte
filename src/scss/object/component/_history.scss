@@ -1,8 +1,13 @@
 .c-history {
 	font-size: 14px;
+	counter-reset: history-number;
 	&--title {
 		text-align: center;
 		background-color: #ccc;
+	}
+	&--number:before {
+		counter-increment: history-number;
+		content: counter(history-number);
 	}
 	&--text,
 	&--textarea,
@@ -11,5 +16,8 @@
 		&.text-center {
 			text-align: center;
 		}
+	}
+	&--update {
+		font-size: 12px;
 	}
 }

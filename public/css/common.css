@@ -793,11 +793,17 @@ label:hover {
 
 .c-history {
 	font-size: 14px;
+	counter-reset: history-number;
 }
 
 .c-history--title {
 	text-align: center;
 	background-color: #ccc;
+}
+
+.c-history--number:before {
+	content: counter(history-number);
+	counter-increment: history-number;
 }
 
 .c-history--text,
@@ -810,6 +816,10 @@ label:hover {
 .c-history--textarea.text-center,
 .c-history--input.text-center {
 	text-align: center;
+}
+
+.c-history--update {
+	font-size: 12px;
 }
 
 .c-main {

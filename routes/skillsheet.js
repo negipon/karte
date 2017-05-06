@@ -131,27 +131,31 @@ router.post('/edit/', isLogined, function(req, res, next) {
 			return;
 		}
 		var skill = req.body;
-		var progress;
+		var progress = '';
 		var id = skill.id;
 		var updateSkillSheet = {
 			education: skill.education,
 			qualification: skill.qualification,
-			specialty: skill.specialty
+			specialty: skill.specialty,
+			updateDate: new Date()
 		};
 		for (key in skill) {
 			if (key.startsWith('progress')) {
-				var skillId = key.replace('progress-', '');
-				progress += '(null,' + ')'
-				console.log(skillId + ':' + skill[key]);
+				var progressCode = key.replace('progress-', '').split('-');
+				progress += "('" + progressCode[0] + "','" + id + "','" + progressCode[1] + "','" + skill[key] +"'),"
 			}
 		}
 		connection.query('UPDATE skillsheet SET ? WHERE userNumber = ' + id, updateSkillSheet, function (err, rows) {
-			if (err) {
-				res.send('Failed');
-			} else {
-				res.redirect('/skillsheet/edit/' + id);
-			}
 
+			connection.query('INSERT INTO `progress` (`progressId`, `userNumber`, `skillId`, `progressValue`) VALUES ' + progress.substr(0,progress.length-1) + ' ON DUPLICATE KEY UPDATE progressValue = VALUES(`progressValue`)', function (err, rows) {
+
+				if (err) {
+					res.send('Failed');
+				} else {
+					res.redirect('/skillsheet/edit/' + id);
+				}
+
+			});
 		});
 	});
 });
