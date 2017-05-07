@@ -9,6 +9,7 @@
 		}
 	}
 	&--number:before {
+		display: block;
 		counter-increment: history-number;
 		content: counter(history-number);
 	}
@@ -18,13 +19,9 @@
 		&.text-center {
 			text-align: center;
 		}
-	}
-	&--text,
-	&--textarea {
-		width: 100%;
-	}
-	&--input {
-		width: 80%;
+		&.text-right {
+			text-align: right;
+		}
 	}
 	&--update {
 		font-size: 12px;

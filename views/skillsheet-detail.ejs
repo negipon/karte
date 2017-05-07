@@ -101,7 +101,7 @@
 							<%# specialty %>
 							<div class="l-form--row-cell">
 								<span class="c-form--key" class="">得意分野</span><!--
-								--><textarea type="text" name="specialty" class="c-form--value"><%= skillsheet.specialty %></textarea>
+								--><textarea type="text" cols="50" rows="5" name="specialty" class="c-form--value"><%= skillsheet.specialty %></textarea>
 							</div>
 
 						</div>
@@ -161,7 +161,7 @@
 								<span class="l-history--cell c-history--title">使用言語/<br>スクリプト</span>
 								<span class="l-history--cell c-history--title">使用ツール</span>
 								<span class="l-history--cell c-history--title">担当範囲</span>
-								<span class="l-history--cell w10p c-history--title">チーム</span>
+								<span class="l-history--cell c-history--title">チーム</span>
 							</div>
 							<% for (i in history) { %>
 							<div class="l-history--row jsc-history-row" data-history-id='<%= history[i].historyId %>'>
@@ -173,39 +173,39 @@
 
 								<%# start - end %>
 								<div class="l-history--cell text-center">
-									<input type="date" name="history-<%= history[i].historyId %>-start" value="<%= formatDate(history[i].start, 'YYYY-MM-DD') %>" class="c-history--input text-center">
+									<input type="date" name="history-<%= history[i].historyId %>-start" value="<%= formatDate(history[i].start, 'YYYY-MM-DD') %>" size="5" class="c-history--input text-right">
 									<span class="c-history--text">〜</span>
-									<input type="date" name="history-<%= history[i].historyId %>-end" value="<%= formatDate(history[i].end, 'YYYY-MM-DD') %>" class="c-history--input text-center">
+									<input type="date" name="history-<%= history[i].historyId %>-end" size="5" value="<%= formatDate(history[i].end, 'YYYY-MM-DD') %>" class="c-history--input text-right">
 								</div>
 
 								<%# project %>
 								<div class="l-history--cell">
-									<textarea name="history-<%= history[i].historyId %>-project" class="c-history--textarea"><%= history[i].project %></textarea>
+									<textarea name="history-<%= history[i].historyId %>-project" cols="30" rows="5" class="c-history--textarea"><%= history[i].project %></textarea>
 								</div>
 
 								<%# os %>
 								<div class="l-history--cell">
-									<textarea name="history-<%= history[i].historyId %>-os" class="c-history--textarea text-center"><%= history[i].os %></textarea>
+									<textarea name="history-<%= history[i].historyId %>-os" cols="10" rows="4" class="c-history--textarea text-center"><%= history[i].os %></textarea>
 								</div>
 
 								<%# language %>
 								<div class="l-history--cell">
-									<textarea name="history-<%= history[i].historyId %>-language" class="c-history--textarea text-center"><%= history[i].language %></textarea>
+									<textarea name="history-<%= history[i].historyId %>-language" cols="10" rows="4" class="c-history--textarea text-center"><%= history[i].language %></textarea>
 								</div>
 
 								<%# tool %>
 								<div class="l-history--cell">
-									<textarea name="history-<%= history[i].historyId %>-tool" class="c-history--textarea text-center"><%= history[i].tool %></textarea>
+									<textarea name="history-<%= history[i].historyId %>-tool" cols="10" rows="4" class="c-history--textarea text-center"><%= history[i].tool %></textarea>
 								</div>
 
 								<%# lenge %>
 								<div class="l-history--cell">
-									<textarea name="history-<%= history[i].historyId %>-lenge" class="c-history--textarea text-center"><%= history[i].lenge %></textarea>
+									<textarea name="history-<%= history[i].historyId %>-lenge" cols="15" rows="4" class="c-history--textarea text-center"><%= history[i].lenge %></textarea>
 								</div>
 
 								<%# team %>
 								<div class="l-history--cell">
-									<input name="history-<%= history[i].historyId %>-team" value="<%= history[i].team %>" class="c-history--input text-center">
+									<input name="history-<%= history[i].historyId %>-team" size="5" value="<%= history[i].team %>" class="c-history--input text-center">
 								</div>
 
 							</div>
@@ -213,27 +213,27 @@
 							<div class="l-history--row jsc-history-null">
 								<div class="l-history--cell text-center"></div>
 								<div class="l-history--cell text-center">
-									<input type="date" name="history-null-start" value="" class="c-history--input text-center">
+									<input type="date" name="history-null-start" size="5" value="" class="c-history--input text-right">
 									<span class="c-history--text">〜</span>
-									<input type="date" name="history-null-end" value="" class="c-history--input text-center">
+									<input type="date" name="history-null-end" value="" size="5" class="c-history--input text-right">
 								</div>
 								<div class="l-history--cell">
-									<textarea name="history-null-project" class="c-history--textarea"></textarea>
+									<textarea name="history-null-project" cols="30" rows="5" class="c-history--textarea"></textarea>
 								</div>
 								<div class="l-history--cell">
-									<textarea name="history-null-os" class="c-history--textarea text-center"></textarea>
+									<textarea name="history-null-os" cols="10" rows="4" class="c-history--textarea text-center"></textarea>
 								</div>
 								<div class="l-history--cell">
-									<textarea name="history-null-language" class="c-history--textarea text-center"></textarea>
+									<textarea name="history-null-language" cols="10" rows="4" class="c-history--textarea text-center"></textarea>
 								</div>
 								<div class="l-history--cell">
-									<textarea name="history-null-tool" class="c-history--textarea text-center"></textarea>
+									<textarea name="history-null-tool" cols="10" rows="4" class="c-history--textarea text-center"></textarea>
 								</div>
 								<div class="l-history--cell">
-									<textarea name="history-null-lenge" class="c-history--textarea text-center"></textarea>
+									<textarea name="history-null-lenge" cols="15" rows="4" class="c-history--textarea text-center"></textarea>
 								</div>
 								<div class="l-history--cell">
-									<input name="history-null-team" value="" class="c-history--input text-center">
+									<input name="history-null-team" size="5" value="" class="c-history--input text-center">
 								</div>
 
 							</div>
@@ -245,12 +245,12 @@
 						<input type="hidden" name="id" value="<%= users.number %>">
 						<input type="hidden" name="historyNullFlag" id="jsi-history-null-flag" value="0">
 						<div class="l-form--submit-wrap">
-							<input type="submit" value="<%= title %>" class="">
+							<input type="submit" value="<%= title %>" class="c-form--submit">
 						</div>
 					</div>
 
 					<%# DELETE%>
-					<div class="">
+					<div class="c-form--delete-wrap">
 						<% if (page === 'skill-edit') { %>
 						<a href="/skillsheet/edit/delete?id=<%= users.id %>" class="c-form--delete jsc-user-delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 						<% } %>
