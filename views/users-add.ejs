@@ -53,138 +53,140 @@
 						<input type="text" id="jsi-upload-value" name="uploadValue" class="c-form--upload-value" value="<%= users.avatarFile %>" disabled readonly>
 					</div>
 					<div class="l-form--column">
+						<div class="l-form--grid">
 
-						<%# NUMBER %>
-						<div class="l-form--row">
-							<div class="l-form--row-cell c-form--input-wrap">
-								<input type="number" name="number" value="<%= users.number %>" pattern="[1-9][0-9]*" class="c-form--input jsc-input" required>
-								<label class="c-form--label">User Number</label>
+							<%# NUMBER %>
+							<div class="l-form--row">
+								<div class="l-form--row-cell c-form--input-wrap">
+									<input type="number" name="number" value="<%= users.number %>" pattern="[1-9][0-9]*" class="c-form--input jsc-input" required>
+									<label class="c-form--label">User Number</label>
+								</div>
 							</div>
-						</div>
 
-						<%# USER NAME %>
-						<div class="l-form--row">
-							<div class="l-form--row-cell c-form--input-wrap">
-								<input type="text" name="username" value="<%= users.username %>" class="c-form--input jsc-input" required>
-								<label class="c-form--label">User Name</label>
+							<%# USER NAME %>
+							<div class="l-form--row">
+								<div class="l-form--row-cell c-form--input-wrap">
+									<input type="text" name="username" value="<%= users.username %>" class="c-form--input jsc-input" required>
+									<label class="c-form--label">User Name</label>
+								</div>
 							</div>
-						</div>
 
-						<%# PASSWORD %>
-						<div class="l-form--row">
-							<div class="l-form--row-cell c-form--input-wrap">
-								<input type="password" name="password" value="" class="c-form--input jsc-input">
-								<label class="c-form--label">Password</label>
+							<%# PASSWORD %>
+							<div class="l-form--row">
+								<div class="l-form--row-cell c-form--input-wrap">
+									<input type="password" name="password" value="" class="c-form--input jsc-input">
+									<label class="c-form--label">Password</label>
+								</div>
 							</div>
-						</div>
 
-						<%# DISPLAY NAME %>
-						<div class="l-form--row">
-							<div class="l-form--row-cell c-form--input-wrap">
-								<input type="text" name="displayName" value="<%= users.displayName %>" class="c-form--input jsc-input" required>
-								<label class="c-form--label">Display Name</label>
+							<%# DISPLAY NAME %>
+							<div class="l-form--row">
+								<div class="l-form--row-cell c-form--input-wrap">
+									<input type="text" name="displayName" value="<%= users.displayName %>" class="c-form--input jsc-input" required>
+									<label class="c-form--label">Display Name</label>
+								</div>
 							</div>
-						</div>
 
-						<%# E-MAIL %>
-						<div class="l-form--row">
-							<div class="c-form--input-wrap">
-								<input type="email" name="email" value="<%= users.email %>" class="c-form--input jsc-input">
-								<label class="c-form--label">E-mail</label>
+							<%# E-MAIL %>
+							<div class="l-form--row">
+								<div class="c-form--input-wrap">
+									<input type="email" name="email" value="<%= users.email %>" class="c-form--input jsc-input">
+									<label class="c-form--label">E-mail</label>
+								</div>
 							</div>
-						</div>
 
-						<%# SEX %>
-						<div class="l-form--row">
-							<div class="l-form--row-title l-form--row-cell">
-								<span class="c-form--label">Sex</span>
+							<%# SEX %>
+							<div class="l-form--row">
+								<div class="l-form--row-title l-form--row-cell">
+									<span class="c-form--label">Sex</span>
+								</div>
+								<div class="l-form--row-cell c-form--input-wrap">
+									<label class="c-form--select-wrap">
+										<select name="gender" class="c-form--select">
+											<% if (users.gender === '2') { %>
+											<option value="1">男性</option><option value="2" selected>女性</option>
+											<% } else { %>
+											<option value="1" selected>男性</option><option value="2">女性</option>
+											<% } %>
+										</select>
+									</label>
+								</div>
 							</div>
-							<div class="l-form--row-cell c-form--input-wrap">
-								<label class="c-form--select-wrap">
-									<select name="gender" class="c-form--select">
-										<% if (users.gender === '2') { %>
-										<option value="1">男性</option><option value="2" selected>女性</option>
-										<% } else { %>
-										<option value="1" selected>男性</option><option value="2">女性</option>
+
+							<%# AUTHORITY %>
+							<div class="l-form--row">
+								<div class="l-form--row-title l-form--row-cell">
+									<span class="c-form--label">Authority</span>
+								</div>
+								<div class="l-form--row-cell c-form--input-wrap">
+									<label class="c-form--select-wrap">
+										<select name="authority" class="c-form--select">
+										<% for (var i in authority) { %>
+											<% if (users.authorityId === authority[i].authorityId) { %>
+											<option value="<%= authority[i].authorityId %>" selected><%= authority[i].authorityName %></option>
+											<% } else { %>
+											<option value="<%= authority[i].authorityId %>"><%= authority[i].authorityName %></option>
+											<% } %>
 										<% } %>
-									</select>
-								</label>
+										</select>
+									</label>
+								</div>
 							</div>
-						</div>
 
-						<%# AUTHORITY %>
-						<div class="l-form--row">
-							<div class="l-form--row-title l-form--row-cell">
-								<span class="c-form--label">Authority</span>
+							<%# Favorite %>
+							<div class="l-form--row">
+								<div class="c-form--input-wrap">
+									<textarea type="text" name="favorite" class="c-form--input jsc-input"><%= users.favorite %></textarea>
+									<label class="c-form--label">Favorite</label>
+								</div>
 							</div>
-							<div class="l-form--row-cell c-form--input-wrap">
-								<label class="c-form--select-wrap">
-									<select name="authority" class="c-form--select">
-									<% for (var i in authority) { %>
-										<% if (users.authorityId === authority[i].authorityId) { %>
-										<option value="<%= authority[i].authorityId %>" selected><%= authority[i].authorityName %></option>
-										<% } else { %>
-										<option value="<%= authority[i].authorityId %>"><%= authority[i].authorityName %></option>
-										<% } %>
-									<% } %>
-									</select>
-								</label>
-							</div>
-						</div>
 
-						<%# Favorite %>
-						<div class="l-form--row">
-							<div class="c-form--input-wrap">
-								<textarea type="text" name="favorite" class="c-form--input jsc-input"><%= users.favorite %></textarea>
-								<label class="c-form--label">Favorite</label>
+							<%# BIRTH DAY %>
+							<div class="l-form--row">
+								<div class="c-form--input-wrap">
+									<input type="date" name="birthday" value="<%= formatDate(users.birthday, 'YYYY-MM-DD') %>" class="c-form--input jsc-input" required>
+									<label class="c-form--label">Birth day</label>
+								</div>
 							</div>
-						</div>
 
-						<%# BIRTH DAY %>
-						<div class="l-form--row">
-							<div class="c-form--input-wrap">
-								<input type="date" name="birthday" value="<%= formatDate(users.birthday, 'YYYY-MM-DD') %>" class="c-form--input jsc-input" required>
-								<label class="c-form--label">Birth day</label>
+							<%# HIRE DATE %>
+							<div class="l-form--row">
+								<div class="c-form--input-wrap">
+									<input type="date" name="hireDate" value="<%= formatDate(users.hireDate, 'YYYY-MM-DD') %>" class="c-form--input jsc-input">
+									<label class="c-form--label">Hire date</label>
+								</div>
 							</div>
-						</div>
 
-						<%# HIRE DATE %>
-						<div class="l-form--row">
-							<div class="c-form--input-wrap">
-								<input type="date" name="hireDate" value="<%= formatDate(users.hireDate, 'YYYY-MM-DD') %>" class="c-form--input jsc-input">
-								<label class="c-form--label">Hire date</label>
+							<%# BLOOD TYPE %>
+							<div class="l-form--row">
+								<div class="c-form--input-wrap">
+									<input type="text" name="bloodType" value="<%= users.bloodType %>" class="c-form--input jsc-input">
+									<label class="c-form--label">Blood Type</label>
+								</div>
 							</div>
-						</div>
 
-						<%# BLOOD TYPE %>
-						<div class="l-form--row">
-							<div class="c-form--input-wrap">
-								<input type="text" name="bloodType" value="<%= users.bloodType %>" class="c-form--input jsc-input">
-								<label class="c-form--label">Blood Type</label>
+							<%# TELEPHONE %>
+							<div class="l-form--row">
+								<div class="c-form--input-wrap">
+									<input type="tel" name="tel" value="<%= users.tel %>" minlength="10" maxlength="13" class="c-form--input jsc-input">
+									<label class="c-form--label">Telephone</label>
+								</div>
 							</div>
-						</div>
 
-						<%# TELEPHONE %>
-						<div class="l-form--row">
-							<div class="c-form--input-wrap">
-								<input type="tel" name="tel" value="<%= users.tel %>" minlength="10" maxlength="13" class="c-form--input jsc-input">
-								<label class="c-form--label">Telephone</label>
+							<%# SUBMIT%>
+							<div class="l-form--row">
+								<input type="hidden" name="id" value="<%= users.number %>">
+								<div class="l-form--submit-wrap">
+									<input type="submit" value="<%= title %>" class="c-form--submit">
+								</div>
 							</div>
-						</div>
 
-						<%# SUBMIT%>
-						<div class="l-form--row">
-							<input type="hidden" name="id" value="<%= users.number %>">
-							<div class="l-form--submit-wrap">
-								<input type="submit" value="<%= title %>" class="c-form--submit">
+							<%# DELETE%>
+							<div class="c-form--delete-wrap">
+								<% if (title == 'Edit Users') { %>
+								<a href="/users/edit/delete?id=<%= users.number %>" class="c-form--delete jsc-user-delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+								<% } %>
 							</div>
-						</div>
-
-						<%# DELETE%>
-						<div class="c-form--delete-wrap">
-							<% if (title == 'Edit Users') { %>
-							<a href="/users/edit/delete?id=<%= users.number %>" class="c-form--delete jsc-user-delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-							<% } %>
 						</div>
 					</div>
 				</form>

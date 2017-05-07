@@ -11,14 +11,8 @@
 	&--row {
 		display: table;
 		width: 100%;
-		+ .l-form--row {
-			margin-top: 20px;
-		}
 		&-cell {
 			display: table-cell;
-			+ .l-form--row-cell {
-				padding-left: 10px;
-			}
 		}
 		&-title {
 			padding: 25px 10px 5px 5px;
@@ -29,6 +23,13 @@
 	}
 	&--table {
 		display: table;
+	}
+	&--grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: auto 1fr auto;
+		grid-gap: 10px;
+		align-items: flex-end;
 	}
 	&--column {
 		display: table-cell;

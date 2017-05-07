@@ -3,10 +3,6 @@
 	counter-reset: history-number;
 	&--title {
 		text-align: center;
-		background-color: $bg-primary-color;
-		+ .c-history--title {
-			border-left: solid 1px #eee;
-		}
 	}
 	&--number:before {
 		display: block;

@@ -1,19 +1,24 @@
 .l-history {
-	display: table;
-	border-collapse: collapse;
 	&--row {
-		display: table-row;
+		display: grid;
+		grid-template-columns: 1fr 5fr 10fr 5fr 5fr 5fr 5fr 3fr;
 		border-bottom: solid 1px #ddd;
-		&:nth-child(odd) {
+		align-items: center;
+		&:first-child {
+			background-color: $bg-primary-color;
+		}
+		&:nth-child(2n+3) {
 			background-color: #fff;
 		}
 	}
 	&--cell {
-		display: table-cell;
-		vertical-align: middle;
 		padding: 5px;
 		&.text-center {
 			text-align: center;
+		}
+		> input,
+		> textarea {
+			width: 100%;
 		}
 	}
 }

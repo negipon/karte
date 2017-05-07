@@ -441,16 +441,8 @@ label:hover {
 	width: 100%;
 }
 
-.l-form--row + .l-form--row {
-	margin-top: 20px;
-}
-
 .l-form--row-cell {
 	display: table-cell;
-}
-
-.l-form--row-cell + .l-form--row-cell {
-	padding-left: 10px;
 }
 
 .l-form--row-title {
@@ -463,6 +455,19 @@ label:hover {
 
 .l-form--table {
 	display: table;
+}
+
+.l-form--grid {
+	display: -ms-grid;
+	display: grid;
+	-ms-grid-columns: 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
+	-ms-grid-rows: auto 1fr auto;
+	grid-template-rows: auto 1fr auto;
+	grid-gap: 10px;
+	-webkit-box-align: end;
+	-ms-flex-align: end;
+	align-items: flex-end;
 }
 
 .l-form--column {
@@ -524,28 +529,36 @@ label:hover {
 	margin-top: 20px;
 }
 
-.l-history {
-	display: table;
-	border-collapse: collapse;
-}
-
 .l-history--row {
-	display: table-row;
+	display: -ms-grid;
+	display: grid;
 	border-bottom: solid 1px #ddd;
+	-ms-grid-columns: 1fr 5fr 10fr 5fr 5fr 5fr 5fr 3fr;
+	grid-template-columns: 1fr 5fr 10fr 5fr 5fr 5fr 5fr 3fr;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
 }
 
-.l-history--row:nth-child(odd) {
+.l-history--row:first-child {
+	background-color: #e8e1e1;
+}
+
+.l-history--row:nth-child(2n+3) {
 	background-color: #fff;
 }
 
 .l-history--cell {
-	display: table-cell;
 	padding: 5px;
-	vertical-align: middle;
 }
 
 .l-history--cell.text-center {
 	text-align: center;
+}
+
+.l-history--cell > input,
+.l-history--cell > textarea {
+	width: 100%;
 }
 
 .l-main {
@@ -563,15 +576,11 @@ label:hover {
 }
 
 .c-card--list {
-	margin-left: -10px;
-}
-
-.c-card--list > li {
-	display: inline-block;
-	width: 33.333%;
-	margin-top: 15px;
-	padding-left: 10px;
-	vertical-align: top;
+	display: -ms-grid;
+	display: grid;
+	-ms-grid-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 20px 10px;
 }
 
 .c-card--user {
@@ -869,11 +878,6 @@ label:hover {
 
 .c-history--title {
 	text-align: center;
-	background-color: #e8e1e1;
-}
-
-.c-history--title + .c-history--title {
-	border-left: solid 1px #eee;
 }
 
 .c-history--number:before {
